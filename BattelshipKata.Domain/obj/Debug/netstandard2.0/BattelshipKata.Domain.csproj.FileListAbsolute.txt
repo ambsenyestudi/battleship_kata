@@ -1,0 +1,9 @@
+C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Domain\bin\Debug\netstandard2.0\BattelshipKata.Domain.deps.json
+C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Domain\bin\Debug\netstandard2.0\BattelshipKata.Domain.dll
+C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Domain\bin\Debug\netstandard2.0\BattelshipKata.Domain.pdb
+C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.AssemblyInfoInputs.cache
+C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.AssemblyInfo.cs
+C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.dll
+C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.pdb
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.csprojResolveAssemblyReference.cache

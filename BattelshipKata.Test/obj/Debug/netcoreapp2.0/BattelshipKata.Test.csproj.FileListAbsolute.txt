@@ -1,0 +1,17 @@
+C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\obj\Debug\netcoreapp2.0\BattelshipKata.Test.csproj.CoreCompileInputs.cache
+C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\obj\Debug\netcoreapp2.0\BattelshipKata.Test.AssemblyInfoInputs.cache
+C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\obj\Debug\netcoreapp2.0\BattelshipKata.Test.AssemblyInfo.cs
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\bin\Debug\netcoreapp2.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\bin\Debug\netcoreapp2.0\xunit.runner.reporters.netcoreapp10.dll
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\bin\Debug\netcoreapp2.0\xunit.runner.utility.netcoreapp10.dll
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\bin\Debug\netcoreapp2.0\BattelshipKata.Test.deps.json
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\bin\Debug\netcoreapp2.0\BattelshipKata.Test.runtimeconfig.json
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\bin\Debug\netcoreapp2.0\BattelshipKata.Test.runtimeconfig.dev.json
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\bin\Debug\netcoreapp2.0\BattelshipKata.Test.dll
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\bin\Debug\netcoreapp2.0\BattelshipKata.Test.pdb
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\bin\Debug\netcoreapp2.0\BattelshipKata.Domain.dll
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\bin\Debug\netcoreapp2.0\BattelshipKata.Domain.pdb
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\obj\Debug\netcoreapp2.0\BattelshipKata.Test.csprojResolveAssemblyReference.cache
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\obj\Debug\netcoreapp2.0\BattelshipKata.Test.csproj.CopyComplete
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\obj\Debug\netcoreapp2.0\BattelshipKata.Test.dll
+c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Test\obj\Debug\netcoreapp2.0\BattelshipKata.Test.pdb
