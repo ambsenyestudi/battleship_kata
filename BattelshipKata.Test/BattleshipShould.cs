@@ -6,11 +6,7 @@ namespace BattelshipKata.Test
 {
     public class BattleshipShould
     {
-        [Fact]
-        public void DummyTest()
-        {
-            Assert.True(true);
-        }
+        
         [Fact]
         public void Exist()
         {
@@ -18,10 +14,22 @@ namespace BattelshipKata.Test
             Assert.NotNull(battleShip);
         }
         [Fact]
-        public void HaveSize()
+        public void Have_board_size()
         {
             var battleShip = new Battelship();
             Assert.True(battleShip.Size>0);
+        }
+        [Fact]
+        public void Have_players()
+        {
+            var battleShip = new Battelship();
+            Assert.True(battleShip.PlayerCount>0);
+        }
+        [Fact]
+        public void Have_ships()
+        {
+            var battleShip = new Battelship();
+            Assert.True(battleShip.ShipCount>0);
         }
     }
 }
