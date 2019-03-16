@@ -13,12 +13,18 @@ namespace BattelshipKata.Domain
         
         public int ShipCount { get => Ships.Count(); }
         public IEnumerable<Ship> Ships { get; set; }
-        public Board(int size = 10, int shipCount = 11)
+        public BoardService BoardService { get; set; }
+        public Board(int size, IEnumerable<Ship> ships)
         {
             this.Size = size;
-            this.InitShips(shipCount);
+            this.Ships = ships;
+            BoardService = new BoardService();
         }
-        private void InitShips(int shipCount)
+        public Board(int size = 10, int shipCount = 11): this(size, ShipsFactory(shipCount))
+        {
+        }
+        
+        private static IEnumerable<Ship> ShipsFactory(int shipCount)
         {
             var ships = new List<Ship>();
             for (int i = 0; i < shipCount; i++)
@@ -43,7 +49,7 @@ namespace BattelshipKata.Domain
 
             }
 
-            Ships = ships;
+            return ships;
         }
     }
 }

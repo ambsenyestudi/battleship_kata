@@ -2,11 +2,11 @@ using BattelshipKata.Domain;
 
 namespace BattelshipKata.Domain.Rules.BoardRules
 {
-    public class InBoardRule : AInBoardRule
+    public class InBoardRule : AInBoardRule, IRule
     {
         private readonly Board board;
 
-        public InBoardRule(Ship ship, Board board) : base(ship)
+        public InBoardRule(Board board, Ship ship) : base(ship)
         {
             this.board = board;
         }
