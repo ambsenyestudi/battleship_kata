@@ -17,5 +17,11 @@ namespace BattelshipKata.Test
             var battleShip = new Battelship();
             Assert.NotNull(battleShip);
         }
+        [Fact]
+        public void HaveSize()
+        {
+            var battleShip = new Battelship();
+            Assert.True(battleShip.Size>0);
+        }
     }
 }
