@@ -31,6 +31,7 @@ namespace BattelshipKata.Test
             var battleShip = new Battelship();
             Assert.True(battleShip.ShipCount > 0);
         }
+        //Refactor this to board
         [Fact]
         public void Have_a_battleship()
         {
