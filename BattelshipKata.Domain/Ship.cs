@@ -6,7 +6,7 @@ namespace BattelshipKata.Domain
     {
         public ShipType ShipType { get; set; }
         public (int, int) Position {get; set; }
-        public ShipOrientation MyProperty { get; set; }
+        public ShipOrientation ShipOrientation { get; set; }
         public int Size { get => (int)ShipType; }
 
         public Ship(ShipType shipType = ShipType.Submarine)

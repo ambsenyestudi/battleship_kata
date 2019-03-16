@@ -11,6 +11,10 @@ namespace BattelshipKata.Domain
         {
             return new InBoardRule(board, ship);
         }
+        public IRule SpaceShipRuleFactory(Board board, IEnumerable<Ship> ships)
+        {
+            return new SpacedShipsRule(board, ships);
+        }
         public bool IsInBoard(IEnumerable<IRule> rules)
         {
             return rules.Where(r=>!r.IsMatch()).Count() == 0;
