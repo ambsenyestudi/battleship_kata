@@ -50,6 +50,7 @@ namespace BattelshipKata.Domain.Rules.BoardRules
         {
             var Position = new List<bool>();
             var overlap = false;
+            var isCorrectSpace = true;
 
             for (int y = 0; y < board.Size; y++)
             {
@@ -63,12 +64,19 @@ namespace BattelshipKata.Domain.Rules.BoardRules
                     }
                     else
                     {
-                        Position.Add(shipMatchCount == 1);
+                        var isOccupied = shipMatchCount == 1;
+                        //this is not true for ship longer than one position
+                        isCorrectSpace = !(x > 0 && Position.Last()) && isOccupied;
+                        if(!isCorrectSpace)
+                        {
+                            break;
+                        }
+                        Position.Add(isCorrectSpace);
                     }
                 }
             }
 
-            return !overlap;
+            return !overlap && isCorrectSpace;
         }
     }
 }
