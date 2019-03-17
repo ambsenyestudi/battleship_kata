@@ -30,9 +30,9 @@ namespace BattelshipKata.Test.Fixtures
             InitRegularCorrectBoard(ships);
             Rules.Add(Sut.SpaceShipRuleFactory(Board, ships));
         }
-        public void InitRegularCorrectBoard(IEnumerable<Ship>ships = null)
+        public void InitRegularCorrectBoard(IEnumerable<Ship> ships = null)
         {
-            if(ships == null)
+            if (ships == null)
             {
                 ships = WellSpacedAcrossBoardShipsFactory();
             }
@@ -45,68 +45,68 @@ namespace BattelshipKata.Test.Fixtures
                 //xxxx0xxx0x
                 new Ship(ShipType.Battelship)
                 {
-                    Position = (0, 0)
+                    Position = Position.Zero
                 },
                 //C1
                 new Ship(ShipType.Cruiser)
                 {
-                    Position = (5, 0)
+                    Position = new Position{ X=5, Y=0 }
                 },
                 //S1
                 new Ship(ShipType.Submarine)
                 {
-                    Position = (9, 0)
+                    Position = new Position{ X=9, Y=0 }
                 },
                 //0000000000
                 //xxx0xx00x0
                 //C2
                 new Ship(ShipType.Cruiser)
                 {
-                    Position = (0, 2)
+                    Position =  new Position{ X=0, Y=2 }
                 },
                 //D1
                 new Ship(ShipType.Destroyer)
                 {
-                    Position = (4, 2)
+                    Position = new Position{ X=4, Y=2 }
                 },
                 new Ship(ShipType.Submarine)
                 {
-                    Position = (8, 2)
+                    Position = new Position{ X=8, Y=2 }
                 },
                 //0000000000
                 //xx0xx0x0x0
                 //D2
                 new Ship(ShipType.Destroyer)
                 {
-                    Position = (0, 4)
+                    Position = new Position{ X=0, Y=4 }
                 },
                 //D3
                 new Ship(ShipType.Destroyer)
                 {
-                    Position = (3, 4)
+                    Position = new Position{ X=3, Y=4 }
                 },
                 //S2
                 new Ship(ShipType.Submarine)
                 {
-                    Position = (6, 4)
+                    Position = new Position{ X=6, Y=4 }
                 },
                 //S3
                 new Ship(ShipType.Submarine)
                 {
-                    Position = (8, 4)
+                    Position = new Position{ X=8, Y=4 }
                 },
                 //0000000000
                 //x0x0000000
                 //S4
                 new Ship(ShipType.Submarine)
                 {
-                    Position = (0, 6)
+                    Position = new Position{ X=0, Y=6 }
                 }
                 ,
                 //S5
                 new Ship(ShipType.Submarine)
                 {
-                    Position = (2, 6)
+                    Position = new Position{ X=2, Y=6 }
                 }
             };
             return ships;

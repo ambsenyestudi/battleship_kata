@@ -9,9 +9,14 @@ namespace BattelshipKata.Domain
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public IRule RectangleContainsRuleFacotory(Position point)
+        public static Rectangle One
         {
-            return new RectangleContainsRule(this, point);
+            get => new Rectangle
+            {
+                Position = Position.Zero,
+                Width = 1,
+                Height = 1
+            };
         }
     }
 }

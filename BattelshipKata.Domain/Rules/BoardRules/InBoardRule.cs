@@ -1,4 +1,5 @@
 using BattelshipKata.Domain;
+using BattelshipKata.Domain.Extensions;
 
 namespace BattelshipKata.Domain.Rules.BoardRules
 {
@@ -15,8 +16,8 @@ namespace BattelshipKata.Domain.Rules.BoardRules
             var result = base.IsMatch(board);
             if (result && ship.Size > 1)
             {
-                var (x, y) = base.AddSizeToPosition();
-                result = x < board.Size && y < board.Size;
+                var endPosition = ship.BoundingBox.FigureEndPosition();
+                result = endPosition.X < board.Size && endPosition.Y < board.Size;
             }
             return result;
         }

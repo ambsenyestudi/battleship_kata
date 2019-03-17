@@ -7,23 +7,13 @@ namespace BattelshipKata.Domain.Rules.BoardRules
         {
             this.ship = ship;
         }
-        protected (int, int) AddSizeToPosition()
-        {
-            var (x, y) = ship.Position;
-            if (ship.ShipOrientation == ShipOrientation.Vertical)
-            {
-                y += (ship.Size - 1);
-            }
-            else
-            {
-                //defaults to horizontal
-                x += (ship.Size - 1);
-            }
-            return (x, y);
-        }
+        
         public virtual bool IsMatch(Board board)
         {
-            var (x, y) = ship.Position;
+            //Refactor this to rectangle
+
+            var x = ship.Position.X;
+            var y = ship.Position.Y;
             var result = x >= 0 && y >= 0 && x < board.Size && y < board.Size;
             return result;
         }

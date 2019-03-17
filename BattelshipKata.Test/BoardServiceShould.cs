@@ -48,7 +48,7 @@ namespace BattelshipKata.Test
             {
                 new Ship(ShipType.Battelship)
                 {
-                    Position = (-1,0)
+                    Position = new Position { X =-1, Y = 0}
                 }
             };
             fixture.InitSizedBoard(4, ships);
@@ -63,7 +63,7 @@ namespace BattelshipKata.Test
             {
                 new Ship(ShipType.Battelship)
                 {
-                    Position = (0, -1)
+                    Position = new Position { X = 0, Y = -1}
                 }
             };
             fixture.InitSizedBoard(4, ships);
@@ -78,7 +78,7 @@ namespace BattelshipKata.Test
             {
                 new Ship(ShipType.Battelship)
                 {
-                    Position = (3, 0),
+                    Position = new Position { X = 3, Y = 0},
                     ShipOrientation = ShipOrientation.Vertical
                 }
             };
@@ -94,7 +94,7 @@ namespace BattelshipKata.Test
             {
                 new Ship(ShipType.Battelship)
                 {
-                    Position = (0, 3)
+                    Position = new Position { X = 0, Y = 3 }
                 }
             };
             fixture.InitSizedBoard(4, ships);
