@@ -1,8 +1,9 @@
 using System;
 using Xunit;
 using BattelshipKata.Domain;
+using BattelshipKata.Domain.BoardManagement;
 
-namespace BattelshipKata.Test
+namespace BattelshipKata.Test.BoardManagement
 {
     public class BoardShould
     {

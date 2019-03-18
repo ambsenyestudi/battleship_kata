@@ -5,7 +5,7 @@ using BattelshipKata.Domain;
 using BattelshipKata.Domain.BoardManagement;
 using BattelshipKata.Domain.Rules;
 
-namespace BattelshipKata.Test.Fixtures
+namespace BattelshipKata.Test.BoardManagement.Fixtures
 {
     public class BoardServiceFixture : IDisposable
     {

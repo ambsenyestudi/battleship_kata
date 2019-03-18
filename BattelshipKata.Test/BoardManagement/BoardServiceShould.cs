@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using BattelshipKata.Domain.Rules;
 using BattelshipKata.Domain.Rules.BoardRules;
 using System.Linq;
-using BattelshipKata.Test.Fixtures;
+using BattelshipKata.Test.BoardManagement.Fixtures;
 
-namespace BattelshipKata.Test
+namespace BattelshipKata.Test.BoardManagement
 {
     public class BoardServiceShould : IClassFixture<BoardServiceFixture>
     {
