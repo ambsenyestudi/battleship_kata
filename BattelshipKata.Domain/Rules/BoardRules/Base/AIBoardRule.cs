@@ -1,3 +1,5 @@
+using BattelshipKata.Domain.BoardManagement;
+
 namespace BattelshipKata.Domain.Rules.BoardRules
 {
     public abstract class AInBoardRule

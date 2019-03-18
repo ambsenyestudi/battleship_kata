@@ -3,7 +3,7 @@ using System.Linq;
 using BattelshipKata.Domain.Rules;
 using BattelshipKata.Domain.Rules.BoardRules;
 
-namespace BattelshipKata.Domain
+namespace BattelshipKata.Domain.BoardManagement
 {
     public class BoardService
     {

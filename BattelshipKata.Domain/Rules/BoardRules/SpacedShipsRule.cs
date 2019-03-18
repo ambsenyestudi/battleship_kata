@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using BattelshipKata.Domain.BoardManagement;
 using BattelshipKata.Domain.Extensions;
 
 namespace BattelshipKata.Domain.Rules.BoardRules

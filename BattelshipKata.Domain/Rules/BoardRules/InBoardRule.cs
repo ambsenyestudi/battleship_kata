@@ -1,4 +1,5 @@
 using BattelshipKata.Domain;
+using BattelshipKata.Domain.BoardManagement;
 using BattelshipKata.Domain.Extensions;
 
 namespace BattelshipKata.Domain.Rules.BoardRules

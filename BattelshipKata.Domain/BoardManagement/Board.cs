@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BattelshipKata.Domain
+namespace BattelshipKata.Domain.BoardManagement
 {
     public class Board
     {
