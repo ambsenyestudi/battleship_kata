@@ -19,8 +19,8 @@ namespace BattelshipKata.Test.BoardManagement
         {   
             fixture.InitEmptyBoard();
             var expected = SquareDiscoveringOutCome.AlreadyHit;
-            fixture.Sut.FireAway(fixture.Squares, Position.Zero);
-            var result = fixture.Sut.FireAway(fixture.Squares, Position.Zero);
+            fixture.Sut.CheckForHits(fixture.Squares, Position.Zero);
+            var result = fixture.Sut.CheckForHits(fixture.Squares, Position.Zero);
 
 
             Assert.Equal(expected, result);
@@ -30,7 +30,7 @@ namespace BattelshipKata.Test.BoardManagement
         {
             fixture.InitEmptyBoard();
             var expected = SquareDiscoveringOutCome.Miss;
-            var result = fixture.Sut.FireAway(fixture.Squares, Position.Zero);
+            var result = fixture.Sut.CheckForHits(fixture.Squares, Position.Zero);
             Assert.Equal(expected, result);
         }
         [Fact]
@@ -38,7 +38,16 @@ namespace BattelshipKata.Test.BoardManagement
         {
             fixture.InitFullBoard();
             var expected = SquareDiscoveringOutCome.Hit;
-            var result = fixture.Sut.FireAway(fixture.Squares, Position.Zero);
+            var result = fixture.Sut.CheckForHits(fixture.Squares, Position.Zero);
+            Assert.Equal(expected, result);
+        }
+        [Fact]
+        public void Sunk_when_submarine_hit()
+        {
+            var subPose = fixture.InitSubmarineBoard();
+            fixture.InitFullBoard();
+            var expected = SquareDiscoveringOutCome.SunkedShip;
+            var result = fixture.Sut.FireAway(fixture.Squares, subPose, fixture.Ships);
             Assert.Equal(expected, result);
         }
     }

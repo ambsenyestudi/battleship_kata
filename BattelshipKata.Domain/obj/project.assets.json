@@ -11,7 +11,7 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "NETStandard.Library/2.0.1": {
+      "NETStandard.Library/2.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
@@ -30,10 +30,12 @@
   },
   "libraries": {
     "Microsoft.NETCore.Platforms/1.1.0": {
-      "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "sha512": "a/iSwnRZb+LHFk49hQOyThh/ZNC3vsbZsF65XwQIb863qF6msmhdQtxGXFL28Ob2NsCz/drEj28BJd/YPpLRBg==",
       "type": "package",
       "path": "microsoft.netcore.platforms/1.1.0",
       "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -42,14 +44,14 @@
         "runtime.json"
       ]
     },
-    "NETStandard.Library/2.0.1": {
-      "sha512": "oA6nwv9MhEKYvLpjZ0ggSpb1g4CQViDVQjLUcDWg598jtvJbpfeP2reqwI1GLW2TbxC/Ml7xL6BBR1HmKPXlTg==",
+    "NETStandard.Library/2.0.3": {
+      "sha512": "st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "type": "package",
-      "path": "netstandard.library/2.0.1",
+      "path": "netstandard.library/2.0.3",
       "files": [
+        ".nupkg.metadata",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "build/NETStandard.Library.targets",
         "build/netstandard2.0/NETStandard.Library.targets",
         "build/netstandard2.0/ref/Microsoft.Win32.Primitives.dll",
         "build/netstandard2.0/ref/System.AppContext.dll",
@@ -166,34 +168,34 @@
         "build/netstandard2.0/ref/netstandard.dll",
         "build/netstandard2.0/ref/netstandard.xml",
         "lib/netstandard1.0/_._",
-        "netstandard.library.2.0.1.nupkg.sha512",
+        "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "NETStandard.Library >= 2.0.1"
+      "NETStandard.Library >= 2.0.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Adria\\.nuget\\packages\\": {},
+    "C:\\Users\\adria\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Adria\\Documents\\VisualsStudioCode\\BattleShipKata\\BattelshipKata.Domain\\BattelshipKata.Domain.csproj",
+      "projectUniqueName": "c:\\Users\\adria\\Documents\\VSCode\\PersonalTests\\battleship_kata\\BattelshipKata.Domain\\BattelshipKata.Domain.csproj",
       "projectName": "BattelshipKata.Domain",
-      "projectPath": "C:\\Users\\Adria\\Documents\\VisualsStudioCode\\BattleShipKata\\BattelshipKata.Domain\\BattelshipKata.Domain.csproj",
-      "packagesPath": "C:\\Users\\Adria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Adria\\Documents\\VisualsStudioCode\\BattleShipKata\\BattelshipKata.Domain\\obj\\",
+      "projectPath": "c:\\Users\\adria\\Documents\\VSCode\\PersonalTests\\battleship_kata\\BattelshipKata.Domain\\BattelshipKata.Domain.csproj",
+      "packagesPath": "C:\\Users\\adria\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\adria\\Documents\\VSCode\\PersonalTests\\battleship_kata\\BattelshipKata.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Adria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\adria\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -201,8 +203,10 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://nuget.bikube.es/nuget": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Users\\adria\\Documents\\MyNugets": {},
+        "C:\\Users\\adria\\Documents\\VSCode\\packages_local": {},
+        "https://api.nuget.org/v3/index.json": {},
+        "https://sfcgrupoiberostar.pkgs.visualstudio.com/_packaging/NugetSFC/nuget/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.0": {
@@ -221,7 +225,7 @@
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.1, )",
+            "version": "[2.0.3, )",
             "autoReferenced": true
           }
         },
