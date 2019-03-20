@@ -5774,11 +5774,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\adria\\Documents\\VSCode\\PersonalTests\\battleship_kata\\BattelshipKata.Test\\BattelshipKata.Test.csproj",
+      "projectUniqueName": "C:\\Users\\adria\\Documents\\VSCode\\PersonalTests\\battleship_kata\\BattelshipKata.Test\\BattelshipKata.Test.csproj",
       "projectName": "BattelshipKata.Test",
-      "projectPath": "c:\\Users\\adria\\Documents\\VSCode\\PersonalTests\\battleship_kata\\BattelshipKata.Test\\BattelshipKata.Test.csproj",
+      "projectPath": "C:\\Users\\adria\\Documents\\VSCode\\PersonalTests\\battleship_kata\\BattelshipKata.Test\\BattelshipKata.Test.csproj",
       "packagesPath": "C:\\Users\\adria\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\adria\\Documents\\VSCode\\PersonalTests\\battleship_kata\\BattelshipKata.Test\\obj\\",
+      "outputPath": "C:\\Users\\adria\\Documents\\VSCode\\PersonalTests\\battleship_kata\\BattelshipKata.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5800,8 +5800,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "c:\\Users\\adria\\Documents\\VSCode\\PersonalTests\\battleship_kata\\BattelshipKata.Domain\\BattelshipKata.Domain.csproj": {
-              "projectPath": "c:\\Users\\adria\\Documents\\VSCode\\PersonalTests\\battleship_kata\\BattelshipKata.Domain\\BattelshipKata.Domain.csproj"
+            "C:\\Users\\adria\\Documents\\VSCode\\PersonalTests\\battleship_kata\\BattelshipKata.Domain\\BattelshipKata.Domain.csproj": {
+              "projectPath": "C:\\Users\\adria\\Documents\\VSCode\\PersonalTests\\battleship_kata\\BattelshipKata.Domain\\BattelshipKata.Domain.csproj"
             }
           }
         }

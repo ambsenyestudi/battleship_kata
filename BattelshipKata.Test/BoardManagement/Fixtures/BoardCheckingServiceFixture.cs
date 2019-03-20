@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using BattelshipKata.Domain;
 using BattelshipKata.Domain.BoardManagement;
+using BattelshipKata.Domain.Extensions;
 
 namespace BattelshipKata.Test.BoardManagement.Fixtures
 {
@@ -31,26 +32,25 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
             Squares = squares;
 
         }
-        public void InitFullBoard()
+        public void InitFullBoard(List<int> indexes, int width = 1, int height = 1)
         {
-            InitEmptyBoard();
-            Squares[0] = new BoardSquare
+            InitEmptyBoard(width, height);
+            foreach (var index in indexes)
+            {
+                Squares[index] = new BoardSquare
             {
                 GameState = SquareGameState.Covered,
                 IsFull = true
             };
+            }
+            
         }
-        public Position InitSubmarineBoard()
+        public Position InitSubmarineBoard(int size)
         {
-            int size = 3;
-            int index = 4;
-            var subPose = new Position { X = index / size, Y = index % size };
-            InitEmptyBoard(size, size);
-            Squares[index] = new BoardSquare
-            {
-                GameState = SquareGameState.Covered,
-                IsFull = true
-            };
+            var subPose = new Position { X = 1, Y = 1 };
+            int index = subPose.ToBoardIndex(size);
+            
+            InitFullBoard(new List<int>{index}, size, size);
             Ships.Clear();
             var sub = new Ship(ShipType.Submarine)
             {
@@ -59,10 +59,47 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
             Ships.Add(sub);
             return subPose;
         }
+        public (Position, Position) InitBattleshipBoard(int size)
+        {
+            var battleshipPose = new Position { X = 1, Y = 0 };
+            var battleshipEndPose = new Position { X = 1, Y = 3 };
+            var indexes = new List<int>();
+            var poses = GeneratePostionsFromToPoints(battleshipPose, battleshipEndPose, size);
+            foreach (var pose in poses)
+            {
+                indexes.Add(pose.ToBoardIndex(size));
+            }
+            Ships.Clear();
+            var battelship = new Ship(ShipType.Battelship)
+            {
+                Position = battleshipPose,
+                ShipOrientation = ShipOrientation.Vertical
+            };
+            Ships.Add(battelship);
+            InitFullBoard(indexes, size, size);
+
+
+            return(battleshipPose, battleshipEndPose);
+        }
+        public List<Position> GeneratePostionsFromToPoints(Position start, Position end, int size)
+        {
+            var result = new List<Position>{start};
+            var deltPost = end.Substract(start);
+            var distance = end.Distance(start);
+            for (int i = 0; i < distance; i++)
+            {
+                var incrementPose = deltPost.Division(distance);
+                var nextPose = start.Add(incrementPose.Product(i+1));
+                result.Add(nextPose);
+            }
+            return result;
+        }
 
         public void Dispose()
         {
             Sut = null;
         }
+
+        
     }
 }

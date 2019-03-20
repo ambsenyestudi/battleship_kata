@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using BattelshipKata.Domain;
 using BattelshipKata.Domain.BoardManagement;
 using BattelshipKata.Test.BoardManagement.Fixtures;
@@ -17,10 +18,11 @@ namespace BattelshipKata.Test.BoardManagement
         [Fact]
         public void Tell_you_when_position_already_tried()
         {   
-            fixture.InitEmptyBoard();
+            var size = 1;
+            fixture.InitEmptyBoard(size, size);
             var expected = SquareDiscoveringOutCome.AlreadyHit;
-            fixture.Sut.CheckForHits(fixture.Squares, Position.Zero);
-            var result = fixture.Sut.CheckForHits(fixture.Squares, Position.Zero);
+            fixture.Sut.CheckForHits(fixture.Squares, Position.Zero, size);
+            var result = fixture.Sut.CheckForHits(fixture.Squares, Position.Zero, size);
 
 
             Assert.Equal(expected, result);
@@ -28,27 +30,46 @@ namespace BattelshipKata.Test.BoardManagement
         [Fact]
         public void Miss_when_empty_square()
         {
-            fixture.InitEmptyBoard();
+            var size = 1;
+            fixture.InitEmptyBoard(size, size);
             var expected = SquareDiscoveringOutCome.Miss;
-            var result = fixture.Sut.CheckForHits(fixture.Squares, Position.Zero);
+            var result = fixture.Sut.CheckForHits(fixture.Squares, Position.Zero, size);
             Assert.Equal(expected, result);
         }
         [Fact]
         public void Hit_when_full_square()
         {
-            fixture.InitFullBoard();
+            var boardSize = 1;
+            fixture.InitFullBoard(new List<int>{0}, boardSize, boardSize);
             var expected = SquareDiscoveringOutCome.Hit;
-            var result = fixture.Sut.CheckForHits(fixture.Squares, Position.Zero);
+            var result = fixture.Sut.CheckForHits(fixture.Squares, Position.Zero, boardSize);
             Assert.Equal(expected, result);
         }
         [Fact]
         public void Sunk_when_submarine_hit()
         {
-            var subPose = fixture.InitSubmarineBoard();
-            fixture.InitFullBoard();
+            var subPose = fixture.InitSubmarineBoard(3);
             var expected = SquareDiscoveringOutCome.SunkedShip;
-            var result = fixture.Sut.FireAway(fixture.Squares, subPose, fixture.Ships);
+            var result = fixture.Sut.FireAway(fixture.Squares, subPose, fixture.Ships, 3);
             Assert.Equal(expected, result);
         }
+        
+        [Fact]
+        public void Sunk_when_battleship_hit_4time()
+        {
+            int size = 4;
+            var (battleShipPose, battleShipEndPose) = fixture.InitBattleshipBoard(size);
+            var expected = SquareDiscoveringOutCome.SunkedShip;
+            var battleShipPoses = fixture.GeneratePostionsFromToPoints(battleShipPose, battleShipEndPose, size);
+            var result = SquareDiscoveringOutCome.None;
+            foreach (var pose in battleShipPoses)
+            {
+                result = fixture.Sut.FireAway(fixture.Squares, pose, fixture.Ships,size);
+                var isLast = pose == battleShipPoses.Last();
+            }
+            
+            Assert.Equal(expected, result);
+        }
+        
     }
 }
