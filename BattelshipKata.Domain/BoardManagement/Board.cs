@@ -15,6 +15,7 @@ namespace BattelshipKata.Domain.BoardManagement
         public int ShipCount { get => Ships.Count(); }
         public IEnumerable<Ship> Ships { get; set; }
         public BoardService BoardService { get; set; }
+        public List<BoardSquare> BoardSquares { get; set; }
         public Board(int size, IEnumerable<Ship> ships)
         {
             this.Size = size;

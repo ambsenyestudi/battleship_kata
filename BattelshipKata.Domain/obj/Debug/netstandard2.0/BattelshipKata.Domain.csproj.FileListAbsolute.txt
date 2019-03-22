@@ -7,3 +7,12 @@ C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Domain\
 C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.dll
 C:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.pdb
 c:\Users\Adria\Documents\VisualsStudioCode\BattleShipKata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.csprojResolveAssemblyReference.cache
+c:\Users\adria\Documents\VSCode\PersonalTests\battleship_kata\BattelshipKata.Domain\bin\Debug\netstandard2.0\BattelshipKata.Domain.deps.json
+c:\Users\adria\Documents\VSCode\PersonalTests\battleship_kata\BattelshipKata.Domain\bin\Debug\netstandard2.0\BattelshipKata.Domain.dll
+c:\Users\adria\Documents\VSCode\PersonalTests\battleship_kata\BattelshipKata.Domain\bin\Debug\netstandard2.0\BattelshipKata.Domain.pdb
+c:\Users\adria\Documents\VSCode\PersonalTests\battleship_kata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.csprojAssemblyReference.cache
+c:\Users\adria\Documents\VSCode\PersonalTests\battleship_kata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.csproj.CoreCompileInputs.cache
+c:\Users\adria\Documents\VSCode\PersonalTests\battleship_kata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.AssemblyInfoInputs.cache
+c:\Users\adria\Documents\VSCode\PersonalTests\battleship_kata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.AssemblyInfo.cs
+c:\Users\adria\Documents\VSCode\PersonalTests\battleship_kata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.dll
+c:\Users\adria\Documents\VSCode\PersonalTests\battleship_kata\BattelshipKata.Domain\obj\Debug\netstandard2.0\BattelshipKata.Domain.pdb

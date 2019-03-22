@@ -1,21 +1,70 @@
 using System;
+<<<<<<< HEAD:BattelshipKata.Domain/Ships/Ship.cs
 
 namespace BattelshipKata.Domain.Ships
+=======
+using System.Collections.Generic;
+using System.Linq;
+
+namespace BattelshipKata.Domain
+>>>>>>> 0dcffeb6a7ae3f8af548fbb4e6b2f4bfcb29c9e5:BattelshipKata.Domain/Ship.cs
 {
     public enum ShipType { None, Submarine, Destroyer, Cruiser, Battelship }
     public enum ShipOrientation { Horizontal, Vertical }
     public class Ship
     {
         public ShipType ShipType { get; set; }
+<<<<<<< HEAD:BattelshipKata.Domain/Ships/Ship.cs
         public Rectangle BoundingBox { get; protected set; }
+=======
+        public Rectangle BoundingBox { get; set; }
+        private List<(Position, bool)> shotsTaken;
+        public List<(Position, bool)> ShotsTaken
+        {
+            get { return shotsTaken;}
+            set { shotsTaken = value;}
+        }
+        
+>>>>>>> 0dcffeb6a7ae3f8af548fbb4e6b2f4bfcb29c9e5:BattelshipKata.Domain/Ship.cs
         public Position Position
         {
             get => BoundingBox.Position;
             set
             {
                 BoundingBox.Position = value;
+                RecalculateShots(BoundingBox);
             }
         }
+        public bool IsSunken
+        {
+            get => ShotsTaken.Count == ShotsTaken.Where((item)=>item.Item2).Count();
+        }
+
+        private void RecalculateShots(Rectangle boundingBox)
+        {
+            if(shotsTaken == null)
+            {
+                shotsTaken = new List<(Position, bool)>();
+            }
+            var rectPoses = BoundingBox.GetAllRectanglePositions();
+            if(shotsTaken.Any())
+            {
+                for (int i = 0; i < shotsTaken.Count; i++)
+                {
+                    shotsTaken[i] = (rectPoses[i],shotsTaken[i].Item2);
+                }
+            }
+            else
+            {
+                
+                foreach (var pose in rectPoses)
+                {
+                    shotsTaken.Add((pose, false));
+                }
+                
+            }
+        }
+
         private ShipOrientation shipOrientation;
         public ShipOrientation ShipOrientation
         {
@@ -27,6 +76,7 @@ namespace BattelshipKata.Domain.Ships
                     BoundingBoxSwichHeightAndWidth();
                 }
                 shipOrientation = value;
+                RecalculateShots(BoundingBox);
             }
 
         }

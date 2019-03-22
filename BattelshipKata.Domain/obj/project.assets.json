@@ -183,11 +183,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Adria\\Documents\\VisualsStudioCode\\BattleShipKata\\BattelshipKata.Domain\\BattelshipKata.Domain.csproj",
+      "projectUniqueName": "c:\\Users\\Adria\\Documents\\VisualsStudioCode\\BattleShipKata\\BattelshipKata.Domain\\BattelshipKata.Domain.csproj",
       "projectName": "BattelshipKata.Domain",
-      "projectPath": "C:\\Users\\Adria\\Documents\\VisualsStudioCode\\BattleShipKata\\BattelshipKata.Domain\\BattelshipKata.Domain.csproj",
+      "projectPath": "c:\\Users\\Adria\\Documents\\VisualsStudioCode\\BattleShipKata\\BattelshipKata.Domain\\BattelshipKata.Domain.csproj",
       "packagesPath": "C:\\Users\\Adria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Adria\\Documents\\VisualsStudioCode\\BattleShipKata\\BattelshipKata.Domain\\obj\\",
+      "outputPath": "c:\\Users\\Adria\\Documents\\VisualsStudioCode\\BattleShipKata\\BattelshipKata.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
