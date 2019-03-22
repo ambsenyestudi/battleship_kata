@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BattelshipKata.Domain;
+using BattelshipKata.Domain.Ships;
 using BattelshipKata.Domain.BoardManagement;
 using BattelshipKata.Test.BoardManagement.Fixtures;
 using Xunit;

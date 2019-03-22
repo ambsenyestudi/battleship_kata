@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BattelshipKata.Domain.Extensions;
+using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Domain.BoardManagement
 {

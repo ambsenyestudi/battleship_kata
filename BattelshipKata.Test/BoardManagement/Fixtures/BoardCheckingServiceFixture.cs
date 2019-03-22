@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BattelshipKata.Domain;
 using BattelshipKata.Domain.BoardManagement;
 using BattelshipKata.Domain.Extensions;
+using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Test.BoardManagement.Fixtures
 {
