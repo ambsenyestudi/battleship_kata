@@ -9,57 +9,42 @@ namespace BattelshipKata.Domain.BoardManagement
 {
     public class BoardCheckingService
     {
+        //make ships check then complete board with misses and ships and board with hits
+        public IEnumerable<Ship> CheckShipsHit(Position shotPosition, IEnumerable<Ship> ships)
+        {
+            var hitShips = ships.Where(sh => sh.BoundingBox.RectangleContainsRuleFactory(shotPosition).IsMatch());
+            return hitShips;
+        }
         public SquareDiscoveringOutCome FireAway(IList<BoardSquare> squares, Position shotPosition, IEnumerable<Ship> ships, int boardWidth)
         {
-            var result = CheckForHits(squares, shotPosition, boardWidth);
-            if (result == SquareDiscoveringOutCome.Hit)
+            var hitShips = CheckShipsHit(shotPosition, ships);
+            if (hitShips.Any())
             {
-                var hitShips = ships.Where(sh => sh.BoundingBox.RectangleContainsRuleFactory(shotPosition).IsMatch());
-                if (hitShips.Any())
+                var currShip = hitShips.First();
+                var wasSunken = currShip.IsSunken;
+                currShip.UpdateShotsTaken(shotPosition);
+                if(currShip.IsSunken)
                 {
-                    var currShip = hitShips.First();
-                    ships = ships.Select(sh =>
-                    {
-                        if (sh.BoundingBox.RectangleContainsRuleFactory(shotPosition).IsMatch())
-                        {
-                            sh.ShotsTaken = sh.ShotsTaken.Select(sht =>
-                                {
-                                    if(sht.Item1 == shotPosition)
-                                    {
-                                        sht.Item2 = true;
-                                    }
-                                    return sht;
-                                }).ToList();
-                        }
-                        return sh;
-                    });
-                    if (currShip.ShipType == ShipType.Submarine)
-                    {
-                        return SquareDiscoveringOutCome.SunkedShip;
-                    }
-                    else
-                    {
-                        var isSunken = ships.Where(sh => sh.BoundingBox.RectangleContainsRuleFactory(shotPosition).IsMatch()).First().IsSunken;
-                        return SquareDiscoveringOutCome.SunkedShip;
-                    }
+                    return SquareDiscoveringOutCome.SunkedShip;
                 }
                 else
                 {
-                    //Something when wrong when mapping ships
+                    return SquareDiscoveringOutCome.Hit;
                 }
             }
-            return result;
-        }
-        public SquareDiscoveringOutCome CheckForHits(IList<BoardSquare> squares, Position shotPosition, int boardWidth)
-        {
-            var index = shotPosition.ToBoardIndex(boardWidth);
-            var currentSquare = squares[index];
-            if (currentSquare.GameState == SquareGameState.Covered)
+            else
             {
-                var outcome = currentSquare.Discover();
-                return outcome;
+                var index = shotPosition.ToBoardIndex(boardWidth);
+                if (squares[index].GameState == SquareGameState.Covered)
+                {
+                    return SquareDiscoveringOutCome.Miss;
+                }
+                else
+                {
+                    return SquareDiscoveringOutCome.AlreadyHit;
+                }
             }
-            return SquareDiscoveringOutCome.AlreadyHit;
         }
+
     }
 }

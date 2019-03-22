@@ -30,7 +30,16 @@ namespace BattelshipKata.Domain.Ships
         {
             get => ShotsTaken.Count == ShotsTaken.Where((item)=>item.Item2).Count();
         }
-
+        public void UpdateShotsTaken(Position pos)
+        {
+            var hits = shotsTaken.Where(sq=>sq.Item1.X == pos.X &&sq.Item1.Y == pos.Y);
+            if(hits.Any())
+            {
+                var index = shotsTaken.IndexOf(hits.First());
+                var (shotPos, shotVal) = shotsTaken[index];
+                shotsTaken[index] = (shotPos, true);
+            }
+        }
         private void RecalculateShots(Rectangle boundingBox)
         {
             if(shotsTaken == null)

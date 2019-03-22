@@ -26,32 +26,23 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
             {
                 for (int x = 0; x < width; x++)
                 {
-                    var nextSquare = new BoardSquare { GameState = SquareGameState.Covered };
+                    var nextSquare = new BoardSquare();
                     squares.Add(nextSquare);
                 }
             }
             Squares = squares;
 
         }
-        public void InitFullBoard(List<int> indexes, int width = 1, int height = 1)
-        {
-            InitEmptyBoard(width, height);
-            foreach (var index in indexes)
-            {
-                Squares[index] = new BoardSquare
-            {
-                GameState = SquareGameState.Covered,
-                IsFull = true
-            };
-            }
-            
-        }
         public Position InitSubmarineBoard(int size)
         {
-            var subPose = new Position { X = 1, Y = 1 };
+            var subPose = Position.Zero;
+            if(size>1)
+            {
+                subPose = new Position { X = 1, Y = 1 };
+            }
             int index = subPose.ToBoardIndex(size);
             
-            InitFullBoard(new List<int>{index}, size, size);
+            InitEmptyBoard(size, size);
             Ships.Clear();
             var sub = new Ship(ShipType.Submarine)
             {
@@ -66,10 +57,7 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
             var battleshipEndPose = new Position { X = 1, Y = 3 };
             var indexes = new List<int>();
             var poses = GeneratePostionsFromToPoints(battleshipPose, battleshipEndPose, size);
-            foreach (var pose in poses)
-            {
-                indexes.Add(pose.ToBoardIndex(size));
-            }
+            InitEmptyBoard(size);
             Ships.Clear();
             var battelship = new Ship(ShipType.Battelship)
             {
@@ -77,7 +65,6 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
                 ShipOrientation = ShipOrientation.Vertical
             };
             Ships.Add(battelship);
-            InitFullBoard(indexes, size, size);
 
 
             return(battleshipPose, battleshipEndPose);

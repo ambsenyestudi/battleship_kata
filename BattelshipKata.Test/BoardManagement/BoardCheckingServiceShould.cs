@@ -22,9 +22,8 @@ namespace BattelshipKata.Test.BoardManagement
             var size = 1;
             fixture.InitEmptyBoard(size, size);
             var expected = SquareDiscoveringOutCome.AlreadyHit;
-            fixture.Sut.CheckForHits(fixture.Squares, Position.Zero, size);
-            var result = fixture.Sut.CheckForHits(fixture.Squares, Position.Zero, size);
-
+            fixture.Squares[0].Discover(null);
+            var result = fixture.Sut.FireAway(fixture.Squares, Position.Zero, fixture.Ships, size);
 
             Assert.Equal(expected, result);
         }
@@ -34,16 +33,16 @@ namespace BattelshipKata.Test.BoardManagement
             var size = 1;
             fixture.InitEmptyBoard(size, size);
             var expected = SquareDiscoveringOutCome.Miss;
-            var result = fixture.Sut.CheckForHits(fixture.Squares, Position.Zero, size);
+            var result = fixture.Sut.FireAway(fixture.Squares, Position.Zero, fixture.Ships, size);
             Assert.Equal(expected, result);
         }
         [Fact]
         public void Hit_when_full_square()
         {
             var boardSize = 1;
-            fixture.InitFullBoard(new List<int>{0}, boardSize, boardSize);
+            var pos = fixture.InitSubmarineBoard(boardSize);
             var expected = SquareDiscoveringOutCome.Hit;
-            var result = fixture.Sut.CheckForHits(fixture.Squares, Position.Zero, boardSize);
+            var result = fixture.Sut.FireAway(fixture.Squares, pos, fixture.Ships, boardSize);
             Assert.Equal(expected, result);
         }
         [Fact]
@@ -63,10 +62,20 @@ namespace BattelshipKata.Test.BoardManagement
             var expected = SquareDiscoveringOutCome.SunkedShip;
             var battleShipPoses = fixture.GeneratePostionsFromToPoints(battleShipPose, battleShipEndPose, size);
             var result = SquareDiscoveringOutCome.None;
+            //it returns on les pose
             foreach (var pose in battleShipPoses)
             {
-                result = fixture.Sut.FireAway(fixture.Squares, pose, fixture.Ships,size);
-                var isLast = pose == battleShipPoses.Last();
+                var hitShips = fixture.Sut.CheckShipsHit(pose, fixture.Ships);
+                if(hitShips.Any())
+                {
+                    var currShip = hitShips.First();
+                    var index = fixture.Ships.IndexOf(currShip);
+                    fixture.Ships[index].UpdateShotsTaken(pose);
+                }
+                if(pose == battleShipPoses.Last())
+                {
+                    result = fixture.Sut.FireAway(fixture.Squares, pose, fixture.Ships,size);
+                }
             }
             
             Assert.Equal(expected, result);
