@@ -62,7 +62,6 @@ namespace BattelshipKata.Test.BoardManagement
             var expected = SquareDiscoveringOutCome.SunkedShip;
             var battleShipPoses = fixture.GeneratePostionsFromToPoints(battleShipPose, battleShipEndPose, size);
             var result = SquareDiscoveringOutCome.None;
-            //it returns on les pose
             foreach (var pose in battleShipPoses)
             {
                 var hitShips = fixture.Sut.CheckShipsHit(pose, fixture.Ships);

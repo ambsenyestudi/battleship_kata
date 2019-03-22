@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using BattelshipKata.Domain;
 using BattelshipKata.Domain.BoardManagement;
 using BattelshipKata.Domain.Extensions;
@@ -54,9 +55,8 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
         public (Position, Position) InitBattleshipBoard(int size)
         {
             var battleshipPose = new Position { X = 1, Y = 0 };
-            var battleshipEndPose = new Position { X = 1, Y = 3 };
+            //var battleshipEndPose = new Position { X = 1, Y = 3 };
             var indexes = new List<int>();
-            var poses = GeneratePostionsFromToPoints(battleshipPose, battleshipEndPose, size);
             InitEmptyBoard(size);
             Ships.Clear();
             var battelship = new Ship(ShipType.Battelship)
@@ -66,7 +66,7 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
             };
             Ships.Add(battelship);
 
-
+            var battleshipEndPose = battelship.BoundingBox.GetAllRectanglePositions().Last();
             return(battleshipPose, battleshipEndPose);
         }
         public List<Position> GeneratePostionsFromToPoints(Position start, Position end, int size)
