@@ -22,6 +22,7 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
 
         public void InitEmptyBoard(int width = 1, int height = 1)
         {
+            Ships= new List<Ship>();
             var squares = new List<BoardSquare>();
             for (int y = 0; y < height; y++)
             {

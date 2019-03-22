@@ -36,6 +36,7 @@ namespace BattelshipKata.Test.BoardManagement
             var result = fixture.Sut.FireAway(fixture.Squares, Position.Zero, fixture.Ships, size);
             Assert.Equal(expected, result);
         }
+        //this doesent pass on batch exec
         [Fact]
         public void Hit_when_full_square()
         {
@@ -46,10 +47,11 @@ namespace BattelshipKata.Test.BoardManagement
             Assert.Equal(expected, result);
         }
         [Fact]
-        public void Sunk_when_submarine_hit()
+        public void Hit_when_submarine_hit()
         {
             var subPose = fixture.InitSubmarineBoard(3);
-            var expected = SquareDiscoveringOutCome.SunkedShip;
+            var expected = SquareDiscoveringOutCome.Hit;
+            //remember submarine has 2 poses now
             var result = fixture.Sut.FireAway(fixture.Squares, subPose, fixture.Ships, 3);
             Assert.Equal(expected, result);
         }
