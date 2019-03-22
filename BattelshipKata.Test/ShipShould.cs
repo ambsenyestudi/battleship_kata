@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using BattelshipKata.Domain;
+using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Test
 {
@@ -14,31 +15,31 @@ namespace BattelshipKata.Test
             Assert.True(ship.Size > 0);
         }
         [Fact]
-        public void Size_one_when_subarine()
+        public void Size_two_when_subarine()
         {
-            var ship = new Ship(ShipType.Submarine);
-            var expected = 1;
-            Assert.Equal(expected, ship.Size);
-        }
-        [Fact]
-        public void Size_two_when_destroyer()
-        {
-            var ship = new Ship(ShipType.Destroyer);
+            var ship = new Submarine();
             var expected = 2;
             Assert.Equal(expected, ship.Size);
         }
-        [Fact]  
-        public void Size_thre_when_cruser()
+        [Fact]
+        public void Size_three_when_destroyer()
         {
-            var ship = new Ship(ShipType.Cruiser);
+            var ship = new Destroyer();
             var expected = 3;
             Assert.Equal(expected, ship.Size);
         }
-        [Fact]
-        public void Size_thre_when_battleship()
+        [Fact]  
+        public void Size_four_when_cruser()
         {
-            var ship = new Ship(ShipType.Battelship);
+            var ship = new Cruiser();
             var expected = 4;
+            Assert.Equal(expected, ship.Size);
+        }
+        [Fact]
+        public void Size_five_when_battleship()
+        {
+            var ship = new Battleship();
+            var expected = 5;
             Assert.Equal(expected, ship.Size);
         }
     }

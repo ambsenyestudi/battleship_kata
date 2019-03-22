@@ -6,6 +6,7 @@ using BattelshipKata.Domain.Rules;
 using BattelshipKata.Domain.Rules.BoardRules;
 using System.Linq;
 using BattelshipKata.Test.BoardManagement.Fixtures;
+using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Test.BoardManagement
 {
@@ -36,7 +37,7 @@ namespace BattelshipKata.Test.BoardManagement
             {
                 new Ship(ShipType.Battelship)
             };
-            fixture.InitSizedBoard(4, ships);
+            fixture.InitSizedBoard(5, ships);
 
             var result = fixture.Sut.IsInBoard(fixture.Rules);
             Assert.True(result);
@@ -78,11 +79,11 @@ namespace BattelshipKata.Test.BoardManagement
             {
                 new Ship(ShipType.Battelship)
                 {
-                    Position = new Position { X = 3, Y = 0},
+                    Position = new Position { X = 4, Y = 0},
                     ShipOrientation = ShipOrientation.Vertical
                 }
             };
-            fixture.InitSizedBoard(4, ships);
+            fixture.InitSizedBoard(5, ships);
 
             var result = fixture.Sut.IsInBoard(fixture.Rules);
             Assert.True(result);
@@ -94,10 +95,10 @@ namespace BattelshipKata.Test.BoardManagement
             {
                 new Ship(ShipType.Battelship)
                 {
-                    Position = new Position { X = 0, Y = 3 }
+                    Position = new Position { X = 0, Y = 4 }
                 }
             };
-            fixture.InitSizedBoard(4, ships);
+            fixture.InitSizedBoard(5, ships);
 
             var result = fixture.Sut.IsInBoard(fixture.Rules);
             Assert.True(result);

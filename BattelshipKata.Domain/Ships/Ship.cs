@@ -1,11 +1,13 @@
-namespace BattelshipKata.Domain
+using System;
+
+namespace BattelshipKata.Domain.Ships
 {
     public enum ShipType { None, Submarine, Destroyer, Cruiser, Battelship }
     public enum ShipOrientation { Horizontal, Vertical }
     public class Ship
     {
         public ShipType ShipType { get; set; }
-        public Rectangle BoundingBox { get; set; }
+        public Rectangle BoundingBox { get; protected set; }
         public Position Position
         {
             get => BoundingBox.Position;
@@ -37,7 +39,7 @@ namespace BattelshipKata.Domain
             BoundingBox.Height = h;
         }
 
-        public int Size { get => (int)ShipType; }
+        public int Size { get =>Math.Max(BoundingBox.Width, BoundingBox.Height); }
 
         public Ship(ShipType shipType = ShipType.Submarine)
         {
@@ -46,25 +48,23 @@ namespace BattelshipKata.Domain
             InitBoundingBox(this.ShipType);
         }
 
-        private void InitBoundingBox(ShipType shipType)
+        protected virtual void InitBoundingBox(ShipType shipType)
         {
-            var boundingBox = Rectangle.One;
             switch (shipType)
             {
                 case ShipType.Battelship:
-                    boundingBox.Width = 4;
+                    this.BoundingBox = Battleship.BattleshipBoundingBoxFactory();
                     break;
                 case ShipType.Cruiser:
-                    boundingBox.Width = 3;
+                    this.BoundingBox = Cruiser.CruiserBoundingBoxFactory();
                     break;
                 case ShipType.Destroyer:
-                    boundingBox.Width = 2;
+                    this.BoundingBox = Destroyer.DestroyerBoundingBoxFactory();
                     break;
                 default:
-                    boundingBox = Rectangle.One;
+                    this.BoundingBox = Submarine.SubmarineBoundingBoxFactory();
                     break;
             }
-            this.BoundingBox = boundingBox;
         }
     }
 }

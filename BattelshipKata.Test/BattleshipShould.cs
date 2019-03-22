@@ -10,19 +10,19 @@ namespace BattelshipKata.Test
         [Fact]
         public void Exist()
         {
-            var battleShip = new Battelship();
+            var battleShip = new BattelshipGame();
             Assert.NotNull(battleShip);
         }
         [Fact]
         public void Have_board_size()
         {
-            var battleShip = new Battelship();
+            var battleShip = new BattelshipGame();
             Assert.True(battleShip.BoardSize > 0);
         }
         [Fact]
         public void Have_players()
         {
-            var battleShip = new Battelship();
+            var battleShip = new BattelshipGame();
             Assert.True(battleShip.PlayerCount > 0);
         }
     }

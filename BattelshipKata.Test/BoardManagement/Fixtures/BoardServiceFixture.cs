@@ -4,6 +4,7 @@ using System.Linq;
 using BattelshipKata.Domain;
 using BattelshipKata.Domain.BoardManagement;
 using BattelshipKata.Domain.Rules;
+using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Test.BoardManagement.Fixtures
 {
