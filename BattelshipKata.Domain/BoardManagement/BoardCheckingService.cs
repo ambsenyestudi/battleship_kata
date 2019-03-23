@@ -12,7 +12,7 @@ namespace BattelshipKata.Domain.BoardManagement
         //make ships check then complete board with misses and ships and board with hits
         public IEnumerable<Ship> CheckShipsHit(Position shotPosition, IEnumerable<Ship> ships)
         {
-            var hitShips = ships.Where(sh => sh.BoundingBox.RectangleContainsRuleFactory(shotPosition).IsMatch());
+            var hitShips = ships.Where(sh => sh.HitRuleFactory(shotPosition).IsMatch());
             return hitShips;
         }
         public SquareDiscoveringOutCome FireAway(IList<BoardSquare> squares, Position shotPosition, IEnumerable<Ship> ships, int boardWidth)
@@ -21,9 +21,8 @@ namespace BattelshipKata.Domain.BoardManagement
             if (hitShips.Any())
             {
                 var currShip = hitShips.First();
-                var wasSunken = currShip.IsSunken;
                 currShip.UpdateShotsTaken(shotPosition);
-                if(currShip.IsSunken)
+                if(currShip.SunkRuleFactory().IsMatch())
                 {
                     return SquareDiscoveringOutCome.SunkedShip;
                 }
@@ -35,7 +34,7 @@ namespace BattelshipKata.Domain.BoardManagement
             else
             {
                 var index = shotPosition.ToBoardIndex(boardWidth);
-                if (squares[index].GameState == SquareGameState.Covered)
+                if (squares[index].MissedShotRuleFactory().IsMatch())
                 {
                     return SquareDiscoveringOutCome.Miss;
                 }

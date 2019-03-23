@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BattelshipKata.Domain.Rules;
+using BattelshipKata.Domain.Rules.ShipRules;
 
 namespace BattelshipKata.Domain.Ships
 {
@@ -25,10 +27,6 @@ namespace BattelshipKata.Domain.Ships
                 BoundingBox.Position = value;
                 RecalculateShots(BoundingBox);
             }
-        }
-        public bool IsSunken
-        {
-            get => ShotsTaken.Count == ShotsTaken.Where((item)=>item.Item2).Count();
         }
         public void UpdateShotsTaken(Position pos)
         {
@@ -115,6 +113,14 @@ namespace BattelshipKata.Domain.Ships
                     this.BoundingBox = Submarine.SubmarineBoundingBoxFactory();
                     break;
             }
+        }
+        public IRule SunkRuleFactory()
+        {
+            return new SunkRule(this);   
+        }
+        public IRule HitRuleFactory(Position shotPos)
+        {
+            return new HitRule(this, shotPos);
         }
     }
 }

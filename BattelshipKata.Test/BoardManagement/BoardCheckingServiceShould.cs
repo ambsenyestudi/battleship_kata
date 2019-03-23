@@ -5,6 +5,7 @@ using BattelshipKata.Domain.Ships;
 using BattelshipKata.Domain.BoardManagement;
 using BattelshipKata.Test.BoardManagement.Fixtures;
 using Xunit;
+using BattelshipKata.Domain.Rules.ShipRules;
 
 namespace BattelshipKata.Test.BoardManagement
 {
@@ -22,7 +23,7 @@ namespace BattelshipKata.Test.BoardManagement
             var size = 1;
             fixture.InitEmptyBoard(size, size);
             var expected = SquareDiscoveringOutCome.AlreadyHit;
-            fixture.Squares[0].Discover(null);
+            fixture.Squares[0].Discover();
             var result = fixture.Sut.FireAway(fixture.Squares, Position.Zero, fixture.Ships, size);
 
             Assert.Equal(expected, result);
