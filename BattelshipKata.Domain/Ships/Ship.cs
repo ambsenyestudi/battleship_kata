@@ -113,12 +113,13 @@ namespace BattelshipKata.Domain.Ships
                     this.BoundingBox = Submarine.SubmarineBoundingBoxFactory();
                     break;
             }
+            this.ShotsTaken = BoundingBox.GetAllRectanglePositions().Select(pos => (pos, false)).ToList();
         }
-        public IRule SunkRuleFactory()
+        public IMatchRule SunkRuleFactory()
         {
             return new SunkRule(this);   
         }
-        public IRule HitRuleFactory(Position shotPos)
+        public IMatchRule HitRuleFactory(Position shotPos)
         {
             return new HitRule(this, shotPos);
         }

@@ -2,7 +2,7 @@ using BattelshipKata.Domain.BoardManagement;
 
 namespace BattelshipKata.Domain.Rules.BoardRules
 {
-    public class MissedShotRule : IRule
+    public class MissedShotRule : IMatchRule
     {
         private readonly BoardSquare square;
 

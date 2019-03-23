@@ -5,7 +5,7 @@ namespace BattelshipKata.Domain.Extensions
 {
     public static class RectangleExtensions
     {
-        public static IRule RectangleContainsRuleFactory(this Rectangle rect, Position point)
+        public static IMatchRule RectangleContainsRuleFactory(this Rectangle rect, Position point)
         {
             return new RectangleContainsRule(rect, point);
         }

@@ -4,7 +4,7 @@ using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Domain.Rules.ShipRules
 {
-    public class SunkRule : IRule
+    public class SunkRule : IMatchRule
     {
         private readonly Ship ship;
 

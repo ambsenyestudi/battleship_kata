@@ -22,6 +22,14 @@ namespace BattelshipKata.Domain
         }
         public static bool operator ==(Position a, Position b)
         {
+            if(object.ReferenceEquals(null, a))
+            {
+                return object.ReferenceEquals(null, b);
+            }
+            else if(object.ReferenceEquals(null, b))
+            {
+                return false;
+            }
             return a.X == b.X && a.Y == b.Y;
         }
         public static bool operator !=(Position a, Position b)

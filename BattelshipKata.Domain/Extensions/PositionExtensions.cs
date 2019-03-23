@@ -46,7 +46,7 @@ namespace BattelshipKata.Domain.Extensions
             };
             return nextPosition;
         }
-         public static Position Division(this Position position, int x)
+        public static Position Division(this Position position, int x)
         {
             var nextPosition = new Position
             {
@@ -62,6 +62,20 @@ namespace BattelshipKata.Domain.Extensions
         public static int ToBoardIndex(this Position position, int boardWidth)
         {
             return position.Y * boardWidth + position.X;
+        }
+        public static Position ToPositionFromBoardIndex(this int index, int boardWidth)
+        {
+            var defaultPos = Position.Zero;
+
+            if (boardWidth > 0)
+            {
+                return new Position
+                {
+                    X = index % boardWidth,
+                    Y = index / boardWidth
+                };
+            }
+            return defaultPos;
         }
     }
 

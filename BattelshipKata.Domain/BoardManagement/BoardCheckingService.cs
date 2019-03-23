@@ -17,6 +17,12 @@ namespace BattelshipKata.Domain.BoardManagement
         }
         public SquareDiscoveringOutCome FireAway(IList<BoardSquare> squares, Position shotPosition, IEnumerable<Ship> ships, int boardWidth)
         {
+            //if ship hit update squares
+            
+            return OldFireAway(squares, shotPosition, ships, boardWidth);
+        }
+        private SquareDiscoveringOutCome OldFireAway(IList<BoardSquare> squares, Position shotPosition, IEnumerable<Ship> ships, int boardWidth)
+        {
             var hitShips = CheckShipsHit(shotPosition, ships);
             if (hitShips.Any())
             {

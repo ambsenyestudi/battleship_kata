@@ -3,11 +3,11 @@ using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Domain.Rules.ShipRules
 {
-    public class HitRule : IRule
+    public class HitRule : IMatchRule
     {
         private readonly Ship ship;
         private readonly Position shotPosition;
-        private readonly IRule shotInBoundingBoxRule;
+        private readonly IMatchRule shotInBoundingBoxRule;
 
         public HitRule(Ship ship, Position shotPosition)
         {

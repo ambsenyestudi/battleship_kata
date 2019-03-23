@@ -3,7 +3,7 @@ using BattelshipKata.Domain.Extensions;
 
 namespace BattelshipKata.Domain.Rules.MathRules
 {
-    public class RectangleContainsRule : IRule
+    public class RectangleContainsRule : IMatchRule
     {
         private readonly Rectangle rectangle;
         private readonly Position point;

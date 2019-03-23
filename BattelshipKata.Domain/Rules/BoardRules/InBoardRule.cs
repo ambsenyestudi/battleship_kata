@@ -5,7 +5,7 @@ using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Domain.Rules.BoardRules
 {
-    public class InBoardRule : AInBoardRule, IRule
+    public class InBoardRule : AInBoardRule, IMatchRule
     {
         private readonly Board board;
 

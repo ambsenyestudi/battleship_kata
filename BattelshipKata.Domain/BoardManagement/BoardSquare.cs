@@ -15,12 +15,12 @@ namespace BattelshipKata.Domain.BoardManagement
         {
             Reset();
         }
-        public SquareDiscoveringOutCome Discover(IRule hitRule = null, IRule sunkRule = null)
+        public SquareDiscoveringOutCome Discover(IMatchRule hitRule = null, IMatchRule sunkRule = null)
         {
 
             if(hitRule !=null && hitRule.IsMatch())
             {
-                if(hitRule !=null && sunkRule.IsMatch())
+                if(sunkRule !=null && sunkRule.IsMatch())
                 {
                     GameState = SquareGameState.Hit;
                     return SquareDiscoveringOutCome.SunkedShip;
@@ -35,7 +35,7 @@ namespace BattelshipKata.Domain.BoardManagement
         {
             GameState = SquareGameState.Covered;
         }
-        public IRule MissedShotRuleFactory()
+        public IMatchRule MissedShotRuleFactory()
         {
             return new MissedShotRule(this);
         }

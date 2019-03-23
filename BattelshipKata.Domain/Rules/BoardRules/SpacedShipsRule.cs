@@ -6,7 +6,7 @@ using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Domain.Rules.BoardRules
 {
-    public class SpacedShipsRule : IRule
+    public class SpacedShipsRule : IMatchRule
     {
         private readonly Board board;
         private readonly IEnumerable<Ship> ships;
