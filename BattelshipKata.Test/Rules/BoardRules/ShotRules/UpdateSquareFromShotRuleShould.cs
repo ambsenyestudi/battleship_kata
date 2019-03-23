@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 using BattelshipKata.Domain;
 using BattelshipKata.Domain.BoardManagement;
-using BattelshipKata.Domain.Rules.BoardRules;
+using BattelshipKata.Domain.Rules.BoardRules.ShotRules;
 using BattelshipKata.Domain.Ships;
 using BattelshipKata.Test.Helpers;
 using Xunit;
 
-namespace BattelshipKata.Test.Rules.BoardManagement
+namespace BattelshipKata.Test.Rules.BoardRules.ShotRules
 {
     public class UpdateSquareFromShotRuleShould
     {
@@ -20,7 +20,7 @@ namespace BattelshipKata.Test.Rules.BoardManagement
             var size = 2;
             var square = TestFactory.GetSquares(size);
             var ships = TestFactory.GetSingleSumbarineAsShips();
-            var rule = new UpdateSquareFromShotRule(square, ships, Position.Zero, size);
+            var rule = new UpdateSquareToHitRule(square, ships, Position.Zero, size);
             //When
             var evaluator = rule.Eval();
             if (evaluator.IsSuccess)
@@ -40,7 +40,7 @@ namespace BattelshipKata.Test.Rules.BoardManagement
             var subPos = new Position { X = 0, Y = 1 };
             var missPos = Position.Zero;
             var ships = TestFactory.GetSingleSumbarineAsShips(subPos);
-            var rule = new UpdateSquareFromShotRule(square, ships, missPos, width);
+            var rule = new UpdateSquareToHitRule(square, ships, missPos, width);
             //When
             var IsSuccess = rule.Eval().IsSuccess;
             //Then
@@ -56,12 +56,34 @@ namespace BattelshipKata.Test.Rules.BoardManagement
             var subPos = new Position { X = 0, Y = 1 };
             var missPos = Position.Zero;
             var ships = TestFactory.GetSingleSumbarineAsShips(subPos);
-            var rule = new UpdateSquareFromShotRule(square, ships, missPos, width);
+            var rule = new UpdateSquareToHitRule(square, ships, missPos, width);
             //When
             var evaluator = rule.Eval();
             var IsSuccess = evaluator.IsSuccess;
+            //this is wrong on purpuse to test extreme case
             evaluator.Execute();
             var isCovered = square.First().GameState == SquareGameState.Covered;
+            //Then
+            Assert.True(isCovered);
+        }
+        [Fact]
+        public void Discover_miss_on_empty_square()
+        {
+            //Given 2 x 2 Board
+            var width = 2;
+            var height = 2;
+            var square = TestFactory.GetSquares(width * height);
+            var subPos = new Position { X = 0, Y = 1 };
+            var missPos = Position.Zero;
+            var ships = TestFactory.GetSingleSumbarineAsShips(subPos);
+            var rule = new UpdateSquareToMissRule(square, ships, missPos, width);
+            //When
+            var evaluator = rule.Eval();
+            if (evaluator.IsSuccess)
+            {
+                evaluator.Execute();
+            }
+            var isCovered = square.First().GameState == SquareGameState.Miss;
             //Then
             Assert.True(isCovered);
         }

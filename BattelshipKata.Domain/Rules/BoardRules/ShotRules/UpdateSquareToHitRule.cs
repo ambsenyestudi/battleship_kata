@@ -7,15 +7,15 @@ using BattelshipKata.Domain.Extensions;
 using BattelshipKata.Domain.Rules.Base;
 using BattelshipKata.Domain.Ships;
 
-namespace BattelshipKata.Domain.Rules.BoardRules
+namespace BattelshipKata.Domain.Rules.BoardRules.ShotRules
 {
-    public class UpdateSquareFromShotRule : BaseRule
+    public class UpdateSquareToHitRule : BaseRule
     {
         private IList<BoardSquare> squares;
         private IEnumerable<Ship> ships;
         private Position shotPosition;
 
-        public UpdateSquareFromShotRule(IList<BoardSquare> squares,
+        public UpdateSquareToHitRule(IList<BoardSquare> squares,
             IEnumerable<Ship> ships,
             Position shotPosition, int boardWith) : base(() =>
             {
