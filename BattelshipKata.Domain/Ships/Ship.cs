@@ -117,7 +117,7 @@ namespace BattelshipKata.Domain.Ships
         }
         public IMatchRule SunkRuleFactory()
         {
-            return new SunkRule(this);   
+            return new SunkMatchRule(this);   
         }
         public IMatchRule HitRuleFactory(Position shotPos)
         {

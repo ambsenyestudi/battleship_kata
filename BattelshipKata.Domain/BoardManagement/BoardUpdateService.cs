@@ -10,6 +10,7 @@ namespace BattelshipKata.Domain.BoardManagement
     {
         public void UpdateMissShot(Board board, Position shotPosition)
         {
+            board.LastActionOutcome = new ShotActionOutcome{ Outcome = SquareDiscoveringOutCome.Miss };
             DiscoverSquareFromPoseAndRule(board, shotPosition);
         }
         public void UpdateFleetAndBoardHits(Board board, Position shotPosition)
@@ -21,15 +22,16 @@ namespace BattelshipKata.Domain.BoardManagement
                 if (hitRule.IsMatch())
                 {
                     board.Fleet[i].UpdateShotsTaken(shotPosition);
-                    DiscoverSquareFromPoseAndRule(board, shotPosition, hitRule);
+                    board.LastActionOutcome = new ShotActionOutcome{ Outcome = SquareDiscoveringOutCome.Hit, Ship = board.Fleet[i]};
+                    DiscoverSquareFromPoseAndRule(board, shotPosition);
                 }
             }
         }
-        private void DiscoverSquareFromPoseAndRule(Board board, Position shotPosition, IMatchRule hitRule = null, IMatchRule sunkRule = null)
+        private void DiscoverSquareFromPoseAndRule(Board board, Position shotPosition)
         {
             var boardWidth = board.Width;
             var index = shotPosition.ToBoardIndex(boardWidth);
-            board.BoardSquares[index].Discover(hitRule, sunkRule);
+            board.BoardSquares[index].Discover(board.LastActionOutcome.Outcome);
         }
     }
 }

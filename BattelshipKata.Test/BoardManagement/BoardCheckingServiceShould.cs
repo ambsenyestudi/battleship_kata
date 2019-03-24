@@ -17,17 +17,7 @@ namespace BattelshipKata.Test.BoardManagement
         {
             this.fixture = fixture;
         }
-        [Fact]
-        public void Tell_you_when_position_already_tried()
-        {   
-            var size = 1;
-            fixture.InitEmptyBoard(size, size);
-            var expected = SquareDiscoveringOutCome.AlreadyHit;
-            fixture.Squares[0].Discover();
-            var result = fixture.Sut.FireAway(fixture.Squares, Position.Zero, fixture.Ships, size);
-
-            Assert.Equal(expected, result);
-        }
+        
         [Fact]
         public void Miss_when_empty_square()
         {

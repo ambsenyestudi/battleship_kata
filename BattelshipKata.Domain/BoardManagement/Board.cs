@@ -27,6 +27,7 @@ namespace BattelshipKata.Domain.BoardManagement
         public IList<Ship> Fleet { get; set; }
         public BoardService BoardService { get; set; }
         public List<BoardSquare> BoardSquares { get; set; }
+        public ShotActionOutcome LastActionOutcome { get; set; }
         //Todo refactor into bounding box
         public int Width { get; private set; }
         public int Height { get; private set; }

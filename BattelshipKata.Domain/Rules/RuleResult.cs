@@ -15,8 +15,7 @@ namespace BattelshipKata.Domain.Rules
         {
             this.actionToBeExecuted = actionToBeExecuted;
         }
-
-        public bool IsSuccess { get => actionToBeExecuted != null; }
+        public bool IsSuccess { get; set; }
 
         public void Execute()
         {

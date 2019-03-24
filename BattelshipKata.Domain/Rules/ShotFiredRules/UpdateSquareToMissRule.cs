@@ -30,12 +30,13 @@ namespace BattelshipKata.Domain.Rules.ShotRules
         }
         public override IRuleResult Eval()
         {
-            var hitShipsCount = ships.Where(sh =>sh.HitRuleFactory(shotPosition).IsMatch());
-            if(hitShipsCount.Any())
+            var hitShips = ships.Where(sh =>sh.HitRuleFactory(shotPosition).IsMatch());
+            ruleResult.IsSuccess = !hitShips.Any();
+            if(ruleResult.IsSuccess)
             {
-                return new RuleResult();
+                return ruleResult;
             }
-            return ruleResult;
+            return new RuleResult();
 
         }
     }

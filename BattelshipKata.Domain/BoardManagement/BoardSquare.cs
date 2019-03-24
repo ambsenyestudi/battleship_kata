@@ -6,8 +6,8 @@ using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Domain.BoardManagement
 {
-    public enum SquareGameState { None, Covered, Miss, Hit}
-    public enum SquareDiscoveringOutCome {None, AlreadyHit, Miss, Hit, SunkedShip}
+    public enum SquareGameState { None, Covered, Miss, Hit }
+    public enum SquareDiscoveringOutCome { None, AlreadyHit, Miss, Hit, SunkedShip }
     public class BoardSquare
     {
         public SquareGameState GameState { get; private set; }
@@ -15,22 +15,35 @@ namespace BattelshipKata.Domain.BoardManagement
         {
             Reset();
         }
-        public SquareDiscoveringOutCome Discover(IMatchRule hitRule = null, IMatchRule sunkRule = null)
+        public void Discover(SquareDiscoveringOutCome outcome)
         {
-
-            if(hitRule !=null && hitRule.IsMatch())
+            if(outcome !=SquareDiscoveringOutCome.AlreadyHit)
             {
-                if(sunkRule !=null && sunkRule.IsMatch())
-                {
-                    GameState = SquareGameState.Hit;
-                    return SquareDiscoveringOutCome.SunkedShip;
-                }
-                GameState = SquareGameState.Hit;
-                return SquareDiscoveringOutCome.Hit;
+                GameState = MapOutcome(outcome);
             }
-            GameState = SquareGameState.Miss;
-            return SquareDiscoveringOutCome.Miss;
         }
+
+        private SquareGameState MapOutcome(SquareDiscoveringOutCome outcome)
+        {
+            var result = SquareGameState.Covered;
+            switch (outcome)
+            {
+                case SquareDiscoveringOutCome.SunkedShip:
+                    result = SquareGameState.Hit;
+                    break;
+                case SquareDiscoveringOutCome.Hit:
+                    result = SquareGameState.Hit;
+                    break;
+                case SquareDiscoveringOutCome.Miss:
+                    result = SquareGameState.Miss;
+                    break;
+                default:
+                    result = SquareGameState.None;
+                    break;
+            }
+            return result;
+        }
+
         public void Reset()
         {
             GameState = SquareGameState.Covered;
