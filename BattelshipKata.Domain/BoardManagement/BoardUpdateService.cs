@@ -6,7 +6,7 @@ using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Domain.BoardManagement
 {
-    public class BoardUpdateService
+    public class BoardUpdateService:IBoardUpdateService
     {
         public void UpdateMissShot(Board board, Position shotPosition)
         {
