@@ -6,4 +6,4 @@ bin/
 # Ignore `obj` dir
 obj/
 # or
-*/obj/*
+*\obj\*
