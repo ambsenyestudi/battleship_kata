@@ -18,7 +18,7 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
         {
             Sut = new BoardService();
         }
-        public void InitSizedBoard(int size, IEnumerable<Ship> ships)
+        public void InitSizedBoard(int size, IList<Ship> ships)
         {
             Board = new Board(size, ships);
             Rules = new List<IMatchRule>
@@ -32,7 +32,7 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
             InitRegularCorrectBoard(ships);
             Rules.Add(Sut.SpaceShipRuleFactory(Board, ships));
         }
-        public void InitRegularCorrectBoard(IEnumerable<Ship> ships = null)
+        public void InitRegularCorrectBoard(IList<Ship> ships = null)
         {
             if (ships == null)
             {
@@ -40,7 +40,7 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
             }
             InitSizedBoard(BoardServiceFixture.DEFAULT_SIZE, ships);
         }
-        public IEnumerable<Ship> WellSpacedAcrossBoardShipsFactory()
+        public IList<Ship> WellSpacedAcrossBoardShipsFactory()
         {
             var ships = new List<Ship>
             {

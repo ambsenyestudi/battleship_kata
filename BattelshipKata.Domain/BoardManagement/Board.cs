@@ -6,27 +6,42 @@ namespace BattelshipKata.Domain.BoardManagement
 {
     public class Board
     {
-        public int Size { get; set; }
-        public int BattleShipCount { get => Ships.Where(sh => sh.ShipType == ShipType.Battelship).Count(); }
-        public int CruiserCount { get => Ships.Where(sh => sh.ShipType == ShipType.Cruiser).Count(); }
-        public int DestroyerCount { get => Ships.Where(sh => sh.ShipType == ShipType.Destroyer).Count(); }
-        public int SubmarineCount { get => Ships.Where(sh => sh.ShipType == ShipType.Submarine).Count(); }
+        private int size;
+        public int Size
+        {
+            get { return size;}
+            set 
+            { 
+                size = value;
+                Width =  size;
+                Height = size;
+            }
+        }
         
-        public int ShipCount { get => Ships.Count(); }
-        public IEnumerable<Ship> Ships { get; set; }
+        public int BattleShipCount { get => Fleet.Where(sh => sh.ShipType == ShipType.Battelship).Count(); }
+        public int CruiserCount { get => Fleet.Where(sh => sh.ShipType == ShipType.Cruiser).Count(); }
+        public int DestroyerCount { get => Fleet.Where(sh => sh.ShipType == ShipType.Destroyer).Count(); }
+        public int SubmarineCount { get => Fleet.Where(sh => sh.ShipType == ShipType.Submarine).Count(); }
+        
+        public int ShipCount { get => Fleet.Count(); }
+        public IList<Ship> Fleet { get; set; }
         public BoardService BoardService { get; set; }
         public List<BoardSquare> BoardSquares { get; set; }
-        public Board(int size, IEnumerable<Ship> ships)
+        //Todo refactor into bounding box
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+
+        public Board(int size, IList<Ship> ships)
         {
             this.Size = size;
-            this.Ships = ships;
+            this.Fleet = ships;
             BoardService = new BoardService();
         }
         public Board(int size = 10, int shipCount = 11): this(size, ShipsFactory(shipCount))
         {
         }
         
-        private static IEnumerable<Ship> ShipsFactory(int shipCount)
+        private static IList<Ship> ShipsFactory(int shipCount)
         {
             var ships = new List<Ship>();
             for (int i = 0; i < shipCount; i++)

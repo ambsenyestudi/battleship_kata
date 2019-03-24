@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BattelshipKata.Domain;
 using BattelshipKata.Domain.BoardManagement;
-using BattelshipKata.Domain.Rules.BoardRules.ShotRules;
+using BattelshipKata.Domain.Rules.ShotRules;
 using BattelshipKata.Domain.Ships;
 using BattelshipKata.Test.Helpers;
 using Xunit;
@@ -18,9 +18,12 @@ namespace BattelshipKata.Test.Rules.BoardRules.ShotRules
         {
             //Given 2 x 1 Board
             var size = 2;
-            var square = TestFactory.GetSquares(size);
+            var squares = TestFactory.GetSquares(size);
             var ships = TestFactory.GetSingleSumbarineAsShips();
-            var rule = new UpdateSquareToHitRule(square, ships, Position.Zero, size);
+            var hitPos = Position.Zero;
+            var board = new Board{BoardSquares = squares.ToList(), Fleet=ships};
+            var rule = new ShotHitRule(board, hitPos,
+            ()=>{var s ="Todo update action";});
             //When
             var evaluator = rule.Eval();
             if (evaluator.IsSuccess)
@@ -28,7 +31,7 @@ namespace BattelshipKata.Test.Rules.BoardRules.ShotRules
                 evaluator.Execute();
             }
             //Then
-            Assert.Equal(SquareGameState.Hit, square.First().GameState);
+            Assert.Equal(SquareGameState.Hit, squares.First().GameState);
         }
         [Fact]
         public void Not_hit_successfully_on_occupied_square()
@@ -36,11 +39,13 @@ namespace BattelshipKata.Test.Rules.BoardRules.ShotRules
             //Given 2 x 2 Board
             var width = 2;
             var height = 2;
-            var square = TestFactory.GetSquares(width * height);
+            var squares = TestFactory.GetSquares(width * height);
             var subPos = new Position { X = 0, Y = 1 };
             var missPos = Position.Zero;
             var ships = TestFactory.GetSingleSumbarineAsShips(subPos);
-            var rule = new UpdateSquareToHitRule(square, ships, missPos, width);
+            var board = new Board{BoardSquares = squares.ToList(), Fleet=ships};
+            var rule = new ShotHitRule(board, missPos,
+            ()=>{var s ="Todo update action";});
             //When
             var IsSuccess = rule.Eval().IsSuccess;
             //Then
@@ -52,17 +57,19 @@ namespace BattelshipKata.Test.Rules.BoardRules.ShotRules
             //Given 2 x 2 Board
             var width = 2;
             var height = 2;
-            var square = TestFactory.GetSquares(width * height);
+            var squares = TestFactory.GetSquares(width * height);
             var subPos = new Position { X = 0, Y = 1 };
             var missPos = Position.Zero;
             var ships = TestFactory.GetSingleSumbarineAsShips(subPos);
-            var rule = new UpdateSquareToHitRule(square, ships, missPos, width);
+            var board = new Board{BoardSquares = squares.ToList(), Fleet=ships};
+            var rule = new ShotHitRule(board, missPos,
+            ()=>{var s ="Todo update action";});
             //When
             var evaluator = rule.Eval();
             var IsSuccess = evaluator.IsSuccess;
             //this is wrong on purpuse to test extreme case
             evaluator.Execute();
-            var isCovered = square.First().GameState == SquareGameState.Covered;
+            var isCovered = squares.First().GameState == SquareGameState.Covered;
             //Then
             Assert.True(isCovered);
         }
@@ -76,7 +83,8 @@ namespace BattelshipKata.Test.Rules.BoardRules.ShotRules
             var subPos = new Position { X = 0, Y = 1 };
             var missPos = Position.Zero;
             var ships = TestFactory.GetSingleSumbarineAsShips(subPos);
-            var rule = new UpdateSquareToMissRule(square, ships, missPos, width);
+            var rule = new UpdateSquareToMissRule(square, ships, missPos, width, 
+            ()=>{var s ="Todo update action";});
             //When
             var evaluator = rule.Eval();
             if (evaluator.IsSuccess)
