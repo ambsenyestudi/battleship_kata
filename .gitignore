@@ -7,3 +7,4 @@ bin/
 obj/
 # or
 *\obj\*
+*\**\obj\*
