@@ -27,7 +27,6 @@ namespace BattelshipKata.Test.BoardManagement
             var result = fixture.Sut.FireAway(fixture.Squares, Position.Zero, fixture.Ships, size);
             Assert.Equal(expected, result);
         }
-        //this doesent pass on batch exec
         [Fact]
         public void Hit_when_full_square()
         {

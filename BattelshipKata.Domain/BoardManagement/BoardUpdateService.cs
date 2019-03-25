@@ -15,7 +15,7 @@ namespace BattelshipKata.Domain.BoardManagement
         }
         public void UpdateFleetAndBoardHits(Board board, Position shotPosition)
         {
-            
+            //what if there was more than one hit
             for (int i = 0; i < board.Fleet.Count; i++)
             {
                 var hitRule = board.Fleet[i].HitRuleFactory(shotPosition);
@@ -33,5 +33,19 @@ namespace BattelshipKata.Domain.BoardManagement
             var index = shotPosition.ToBoardIndex(boardWidth);
             board.BoardSquares[index].Discover(board.LastActionOutcome.Outcome);
         }
+        public void ResetOutcome(Board board)
+        {
+           UpdateOutcome( board, new ShotActionOutcome{Outcome = SquareDiscoveringOutCome.None});
+        }
+        public void UpdateAlreadyHitOutcome(Board board)
+        {
+           UpdateOutcome( board, new ShotActionOutcome{Outcome = SquareDiscoveringOutCome.AlreadyHit});
+        }
+        public void UpdateOutcome(Board board, ShotActionOutcome outcome)
+        {
+            board.LastActionOutcome = outcome;
+        }
+
+        
     }
 }

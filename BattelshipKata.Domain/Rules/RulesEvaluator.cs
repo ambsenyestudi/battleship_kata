@@ -28,17 +28,16 @@ namespace BattelshipKata.Domain.Rules
             }
             this.rules.Last().ElseRules.Add(new RulesChain(alternativeRule));
         }
-        /*
+        
         public void OtherwiseDo(Action otherwiseAction)
         {
             if (this.rules.Count == 0)
             {
                 throw new ArgumentException("You cannot add Else clause without If!");
             }
-            this.rules.Last().ElseRules.Add(new RulesChain(new NullRule(otherwiseAction), true));
+            this.rules.Last().ElseRules.Add(new RulesChain(new AllwaysSuccessRule(otherwiseAction), true));
         }
-        */
-
+        
         public void EvaluateRulesChains()
         {
             this.Evaluate(this.rules, false);
