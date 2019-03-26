@@ -19,7 +19,7 @@ namespace BattelshipKata.Domain.BoardManagement
             for (int i = 0; i < board.Fleet.Count; i++)
             {
                 var hitRule = board.Fleet[i].HitRuleFactory(shotPosition);
-                if (hitRule.IsMatch())
+                if (hitRule.Eval().IsSuccess)
                 {
                     board.Fleet[i].UpdateShotsTaken(shotPosition);
                     board.LastActionOutcome = new ShotActionOutcome { Outcome = SquareDiscoveringOutCome.Hit, Ship = board.Fleet[i] };

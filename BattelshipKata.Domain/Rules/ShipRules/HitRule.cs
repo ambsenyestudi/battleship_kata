@@ -1,21 +1,25 @@
+using System;
 using BattelshipKata.Domain.Extensions;
+using BattelshipKata.Domain.Rules.Base;
 using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Domain.Rules.ShipRules
 {
-    public class HitRule : IMatchRule
+    public class HitRule : BaseRule
     {
         private readonly Ship ship;
         private readonly Position shotPosition;
-        private readonly IMatchRule shotInBoundingBoxRule;
 
-        public HitRule(Ship ship, Position shotPosition)
+        public HitRule(Ship ship, Position pos, Action actionToBeExecuted) : base(actionToBeExecuted)
         {
-            this.shotInBoundingBoxRule = ship.BoundingBox.RectangleContainsRuleFactory(shotPosition);
+            this.ship = ship;
+            this.shotPosition = pos;
         }
-        public bool IsMatch()
+
+        public override IRuleResult Eval()
         {
-            return shotInBoundingBoxRule.IsMatch();
+            ruleResult.IsSuccess = ship.BoundingBox.RectangleContainsRuleFactory(shotPosition).IsMatch();
+            return ruleResult;
         }
     }
 }

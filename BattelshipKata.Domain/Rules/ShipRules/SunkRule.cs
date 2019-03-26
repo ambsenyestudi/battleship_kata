@@ -59,7 +59,7 @@ namespace BattelshipKata.Domain.Rules.ShipRules
             var isHitShip = hitShip != null;
             if (isHitShip)
             {
-                isHitShip &= hitShip.HitRuleFactory(pos).IsMatch();
+                isHitShip &= hitShip.HitRuleFactory(pos).Eval().IsSuccess;
             }
             return isHitShip;
         }
