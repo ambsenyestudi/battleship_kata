@@ -16,8 +16,17 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
             var sutMoq = new Mock<IBoardUpdateService>();
             sutMoq.Setup(moq =>moq.ResetOutcome(It.IsAny<Board>()));
             sutMoq.Setup(moq =>moq.UpdateAlreadyHitOutcome(It.IsAny<Board>()));
-            sutMoq.Setup(moq =>moq.UpdateFleetAndBoardHits(It.IsAny<Board>(), It.IsAny<Position>()));
+            sutMoq.Setup(moq =>moq.UpdateFleetAndBoardHits(It.IsAny<Board>(), It.IsAny<Position>()))
+                .Callback((Board b, Position p) => {
+                    //logic a little biased
+                    b.LastActionOutcome = new ShotActionOutcome
+                    {
+                        Outcome = SquareDiscoveringOutCome.Hit,
+                        Ship = b.Fleet.First()
+                    };
+                });
             sutMoq.Setup(moq =>moq.UpdateMissShot(It.IsAny<Board>(), It.IsAny<Position>()));
+            sutMoq.Setup(moq =>moq.UpdateSunkOutcome(It.IsAny<Board>()));
             return sutMoq;
         }
         public Board SingleSubAndRowBoardFactory(Position subPos)

@@ -6,11 +6,11 @@ using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Domain.BoardManagement
 {
-    public class BoardUpdateService:IBoardUpdateService
+    public class BoardUpdateService : IBoardUpdateService
     {
         public void UpdateMissShot(Board board, Position shotPosition)
         {
-            board.LastActionOutcome = new ShotActionOutcome{ Outcome = SquareDiscoveringOutCome.Miss };
+            board.LastActionOutcome = new ShotActionOutcome { Outcome = SquareDiscoveringOutCome.Miss };
             DiscoverSquareFromPoseAndRule(board, shotPosition);
         }
         public void UpdateFleetAndBoardHits(Board board, Position shotPosition)
@@ -22,7 +22,7 @@ namespace BattelshipKata.Domain.BoardManagement
                 if (hitRule.IsMatch())
                 {
                     board.Fleet[i].UpdateShotsTaken(shotPosition);
-                    board.LastActionOutcome = new ShotActionOutcome{ Outcome = SquareDiscoveringOutCome.Hit, Ship = board.Fleet[i]};
+                    board.LastActionOutcome = new ShotActionOutcome { Outcome = SquareDiscoveringOutCome.Hit, Ship = board.Fleet[i] };
                     DiscoverSquareFromPoseAndRule(board, shotPosition);
                 }
             }
@@ -35,17 +35,25 @@ namespace BattelshipKata.Domain.BoardManagement
         }
         public void ResetOutcome(Board board)
         {
-           UpdateOutcome( board, new ShotActionOutcome{Outcome = SquareDiscoveringOutCome.None});
+            UpdateOutcome(board, new ShotActionOutcome { Outcome = SquareDiscoveringOutCome.None });
         }
         public void UpdateAlreadyHitOutcome(Board board)
         {
-           UpdateOutcome( board, new ShotActionOutcome{Outcome = SquareDiscoveringOutCome.AlreadyHit});
+            UpdateOutcome(board, new ShotActionOutcome { Outcome = SquareDiscoveringOutCome.AlreadyHit });
         }
         public void UpdateOutcome(Board board, ShotActionOutcome outcome)
         {
             board.LastActionOutcome = outcome;
         }
 
-        
+        public void UpdateSunkOutcome(Board board)
+        {
+            var newOutcome = new ShotActionOutcome
+            {
+                Outcome = SquareDiscoveringOutCome.AlreadyHit,
+                Ship = board.LastActionOutcome.Ship
+            };
+            UpdateOutcome(board, newOutcome);
+        }
     }
 }

@@ -8,5 +8,6 @@ namespace BattelshipKata.Domain.BoardManagement
         void ResetOutcome(Board board);
         void UpdateAlreadyHitOutcome(Board board);
         void UpdateOutcome(Board board, ShotActionOutcome outcome);
+        void UpdateSunkOutcome(Board board);
     }
 }

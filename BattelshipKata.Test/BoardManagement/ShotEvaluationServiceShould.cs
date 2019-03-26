@@ -59,14 +59,26 @@ namespace BattelshipKata.Test.BoardManagement
         [Fact]
         public void succed_when_sinking_ship()
         {
-            //ToDo write sinking rule
+            // why do else rules not work?
             var updateMoq = fixture.BoardUpdateServiceFactory();
-            var board = fixture.SingleSubBoardFactory(Position.Zero, 2, 2);
-            var missShotPos = new Position{ X = 0, Y = 1};
-            var evaluator = fixture.DefaultShotEvaluatorFactory(missShotPos, board, updateMoq.Object);
+            var board = fixture.SingleSubAndRowBoardFactory(Position.Zero);
+            HitAllPositionsOfFirstShip(board);
+            var hitShotPos = Position.Zero;
+            var evaluator = fixture.DefaultShotEvaluatorFactory(hitShotPos, board, updateMoq.Object);
             evaluator.EvaluateRulesChains();
-            updateMoq.Verify(moq => moq.UpdateMissShot(board, missShotPos), Times.Once());
+            updateMoq.Verify(moq => moq.UpdateSunkOutcome(board), Times.Once());
             Assert.NotNull(evaluator);
+        }
+
+        private void HitAllPositionsOfFirstShip(Board board)
+        {
+            var max = board.Fleet[0].ShotsTaken.Count;
+            for (int i = 0; i < max; i++)
+            {
+                var oldPos = board.Fleet[0].ShotsTaken[i].Item1;
+                var newValue = (oldPos, true);
+                board.Fleet[0].ShotsTaken[i] = newValue;
+            }
         }
     }
 }

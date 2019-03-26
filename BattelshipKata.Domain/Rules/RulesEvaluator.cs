@@ -40,6 +40,7 @@ namespace BattelshipKata.Domain.Rules
         
         public void EvaluateRulesChains()
         {
+            //var isElseRules = rules.Where(r=>r.ElseRules !=null && r.ElseRules.Any()).Count() > 0;
             this.Evaluate(this.rules, false);
         }
 

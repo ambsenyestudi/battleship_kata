@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BattelshipKata.Domain.Extensions;
 using BattelshipKata.Domain.Rules;
 using BattelshipKata.Domain.Rules.BoardRules;
+using BattelshipKata.Domain.Rules.ShipRules;
 using BattelshipKata.Domain.Rules.ShotRules;
 
 namespace BattelshipKata.Domain.BoardManagement
@@ -31,6 +32,11 @@ namespace BattelshipKata.Domain.BoardManagement
             evaluator.OtherwiseEval(
                 new ShotHitRule(board, shotPosition, 
                     ()=>boardUpdateService.UpdateFleetAndBoardHits(board,shotPosition)
+                )
+            );
+            evaluator.Eval(
+                new SunkRule(board, shotPosition,
+                    ()=>boardUpdateService.UpdateSunkOutcome(board)
                 )
             );
             return evaluator;
