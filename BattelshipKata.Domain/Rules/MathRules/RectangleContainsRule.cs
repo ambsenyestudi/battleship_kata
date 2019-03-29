@@ -1,23 +1,24 @@
-using BattelshipKata.Domain;
-using BattelshipKata.Domain.Extensions;
+using System;
+using BattelshipKata.Domain.Rules.Base;
 
-namespace BattelshipKata.Domain.Rules.MathRules
+namespace BattelshipKata.Domain.Rules
 {
-    public class RectangleContainsRule : IMatchRule
+    public class RectangleContainsRule : BaseRule
     {
-        private readonly Rectangle rectangle;
-        private readonly Position point;
+        private readonly Rectangle bigRect;
+        private readonly Rectangle smallRect;
 
-        public RectangleContainsRule(Rectangle rect, Position point)
+        public RectangleContainsRule(Rectangle bigRect, Rectangle smallRect,Action actionToBeExecuted) : base(actionToBeExecuted)
         {
-            this.rectangle = rect;
-            this.point = point;
+            this.bigRect = bigRect;
+            this.smallRect = smallRect;
         }
-        public bool IsMatch()
+
+        public override IRuleResult Eval()
         {
-            return point.IsEqualOrGrather(rectangle.Position)
-                && point.IsSmallerThan(
-                    rectangle.Position.Add(rectangle.Width, rectangle.Height));
+            ruleResult.IsSuccess = bigRect.Position.X <= smallRect.Position.X && bigRect.MaxX >= smallRect.MaxX &&
+                bigRect.Position.Y <= smallRect.Position.Y && bigRect.MaxY >= smallRect.MaxY;
+            return ruleResult;
         }
     }
 }

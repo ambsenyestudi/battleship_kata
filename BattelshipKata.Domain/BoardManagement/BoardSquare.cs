@@ -50,7 +50,7 @@ namespace BattelshipKata.Domain.BoardManagement
         }
         public IMatchRule MissedShotRuleFactory()
         {
-            return new MissedShotRule(this);
+            return new MissedShotMatchRule(this);
         }
     }
 }

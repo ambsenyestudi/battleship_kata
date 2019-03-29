@@ -18,7 +18,7 @@ namespace BattelshipKata.Domain.Rules.ShipRules
 
         public override IRuleResult Eval()
         {
-            ruleResult.IsSuccess = ship.BoundingBox.RectangleContainsRuleFactory(shotPosition).IsMatch();
+            ruleResult.IsSuccess = ship.BoundingBox.Contains(shotPosition);
             return ruleResult;
         }
     }

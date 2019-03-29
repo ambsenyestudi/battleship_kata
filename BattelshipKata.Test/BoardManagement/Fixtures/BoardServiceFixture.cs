@@ -13,7 +13,7 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
         public const int DEFAULT_SIZE = 10;
         public BoardService Sut { get; set; }
         public Board Board { get; set; }
-        public List<IMatchRule> Rules { get; set; }
+        public List<IRule> Rules { get; set; }
         public BoardServiceFixture()
         {
             Sut = new BoardService();
@@ -21,9 +21,10 @@ namespace BattelshipKata.Test.BoardManagement.Fixtures
         public void InitSizedBoard(int size, IList<Ship> ships)
         {
             Board = new Board(size, ships);
-            Rules = new List<IMatchRule>
+            
+            Rules = new List<IRule>
             {
-                Sut.InBoardRuleFactory(Board, ships.First())
+                new RectangleContainsRule(Board.Bounds, ships.First().BoundingBox, null)
             };
         }
         public void InitRegularWellSpacedBoard()

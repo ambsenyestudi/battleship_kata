@@ -9,20 +9,20 @@ namespace BattelshipKata.Domain.BoardManagement
         private int size;
         public int Size
         {
-            get { return size;}
-            set 
-            { 
+            get { return size; }
+            set
+            {
                 size = value;
-                Width =  size;
+                Width = size;
                 Height = size;
             }
         }
-        
+
         public int BattleShipCount { get => Fleet.Where(sh => sh.ShipType == ShipType.Battelship).Count(); }
         public int CruiserCount { get => Fleet.Where(sh => sh.ShipType == ShipType.Cruiser).Count(); }
         public int DestroyerCount { get => Fleet.Where(sh => sh.ShipType == ShipType.Destroyer).Count(); }
         public int SubmarineCount { get => Fleet.Where(sh => sh.ShipType == ShipType.Submarine).Count(); }
-        
+
         public int ShipCount { get => Fleet.Count(); }
         public IList<Ship> Fleet { get; set; }
         public BoardService BoardService { get; set; }
@@ -31,6 +31,23 @@ namespace BattelshipKata.Domain.BoardManagement
         //Todo refactor into bounding box
         public int Width { get; private set; }
         public int Height { get; private set; }
+        private Rectangle bounds;
+        public Rectangle Bounds
+        {
+            get
+            {
+                if(bounds == null)
+                {
+                    bounds = new Rectangle
+                    {
+                        Position = Position.Zero,
+                        Width = this.Width,
+                        Height = this.Height
+                    };
+                }
+                return bounds;
+            }
+        }
 
         public Board(int size, IList<Ship> ships)
         {
@@ -38,10 +55,10 @@ namespace BattelshipKata.Domain.BoardManagement
             this.Fleet = ships;
             BoardService = new BoardService();
         }
-        public Board(int size = 10, int shipCount = 11): this(size, ShipsFactory(shipCount))
+        public Board(int size = 10, int shipCount = 11) : this(size, ShipsFactory(shipCount))
         {
         }
-        
+
         private static IList<Ship> ShipsFactory(int shipCount)
         {
             var ships = new List<Ship>();
@@ -56,7 +73,7 @@ namespace BattelshipKata.Domain.BoardManagement
                     ships.Add(new Ship(ShipType.Cruiser));
 
                 }
-                else if (i> shipCount / 2)
+                else if (i > shipCount / 2)
                 {
                     ships.Add(new Ship());
                 }

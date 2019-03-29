@@ -115,10 +115,6 @@ namespace BattelshipKata.Domain.Ships
             }
             this.ShotsTaken = BoundingBox.GetAllRectanglePositions().Select(pos => (pos, false)).ToList();
         }
-        public IMatchRule SunkRuleFactory()
-        {
-            return new SunkMatchRule(this);   
-        }
         public IRule HitRuleFactory(Position shotPos)
         {
             return new HitRule(this, shotPos, ()=>this.UpdateShotsTaken(shotPos));

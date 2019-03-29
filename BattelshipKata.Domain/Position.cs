@@ -22,11 +22,11 @@ namespace BattelshipKata.Domain
         }
         public static bool operator ==(Position a, Position b)
         {
-            if(object.ReferenceEquals(null, a))
+            if (object.ReferenceEquals(null, a))
             {
                 return object.ReferenceEquals(null, b);
             }
-            else if(object.ReferenceEquals(null, b))
+            else if (object.ReferenceEquals(null, b))
             {
                 return false;
             }
@@ -34,7 +34,39 @@ namespace BattelshipKata.Domain
         }
         public static bool operator !=(Position a, Position b)
         {
+            if (object.ReferenceEquals(null, a))
+            {
+                return !object.ReferenceEquals(null, b);
+            }
+            else if (object.ReferenceEquals(null, b))
+            {
+                return true;
+            }
             return a.X != b.X || a.Y != b.Y;
+        }
+        public static bool operator >(Position a, Position b)
+        {
+            if(a==null || b==null)
+            {
+                return false;
+            }
+            return a.X > b.X || a.Y > b.Y;
+        }
+        public static bool operator <(Position a, Position b)
+        {
+            if(a==null || b==null)
+            {
+                return false;
+            }
+            return a.X < b.X || a.Y < b.Y;
+        }
+        public static Position operator -(Position a, Position b)
+        {
+            return new Position
+            {
+                X = a.X - b.X,
+                Y = a.Y - b.Y
+            };
         }
     }
 }

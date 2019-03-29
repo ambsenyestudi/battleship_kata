@@ -2,11 +2,11 @@ using BattelshipKata.Domain.BoardManagement;
 
 namespace BattelshipKata.Domain.Rules.BoardRules
 {
-    public class MissedShotRule : IMatchRule
+    public class MissedShotMatchRule : IMatchRule
     {
         private readonly BoardSquare square;
 
-        public MissedShotRule(BoardSquare square)
+        public MissedShotMatchRule(BoardSquare square)
         {
             this.square = square;
         }

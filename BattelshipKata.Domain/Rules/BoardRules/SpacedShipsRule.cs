@@ -1,82 +1,54 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BattelshipKata.Domain.BoardManagement;
 using BattelshipKata.Domain.Extensions;
+using BattelshipKata.Domain.Rules.Base;
 using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Domain.Rules.BoardRules
 {
-    public class SpacedShipsRule : IMatchRule
+    public class SpacedShipsRule : BaseRule
     {
         private readonly Board board;
         private readonly IEnumerable<Ship> ships;
 
-        public SpacedShipsRule(Board board, IEnumerable<Ship> ships)
+        public SpacedShipsRule(Board board, IEnumerable<Ship> ships, Action actionToBeExecuted) : base(actionToBeExecuted)
         {
             this.board = board;
             this.ships = ships;
         }
-        public bool IsEqualOrSmaller(int min, int max, int eval)
+        public List<IRule> CompareShips()
         {
-            return eval >= min && eval < max;
-        }
-        public IEnumerable<Ship> ShipsContainingPoint(IEnumerable<Ship> ships, Position point)
-        {
-            return ships.Where(sh => sh.BoundingBox.RectangleContainsRuleFactory(point).IsMatch());
-        }
-        public bool IsMatch()
-        {
-            var ShipPositionsMap = new List<bool>();
-            var overlap = false;
-            var isCorrectSpace = true;
-
-            for (int y = 0; y < board.Size; y++)
+            var rules = new List<IRule>();
+            var alreadyPlaceShips = ships.Take(1);
+            foreach (var ship in ships.Skip(1))
             {
-                for (int x = 0; x < board.Size; x++)
-                {
-                    var currPosition = new Position { X = x, Y = y };
-                    var shipsContainingPoint = ShipsContainingPoint(ships, currPosition);
-                    if (shipsContainingPoint.Count() > 1)
-                    {
-                        overlap = true;
-                        break;
-                    }
-                    else
-                    {
-                        //refactor this in NoContiguous occupied squares on bord rule
-                        var isOccupied = shipsContainingPoint.Count() > 0;
-                        isCorrectSpace = !isOccupied || (x > 0 && ShipPositionsMap.Last()) != isOccupied;
-
-                        if (!isCorrectSpace)
-                        {
-                            break;
-                        }
-                        if (isOccupied)
-                        {
-                            int nOccupied = CountSquaresOccupiedByNextShip(x, shipsContainingPoint);
-                            for (int i = 0; i < nOccupied; i++)
-                            {
-                                ShipPositionsMap.Add(isOccupied);
-                            }
-                            x += nOccupied;
-                        }
-                        else
-                        {
-                            ShipPositionsMap.Add(isOccupied);
-                        }
-
-                    }
-                }
+                //scale 1
             }
-
-            return !overlap && isCorrectSpace;
+            return rules;
         }
 
-        private int CountSquaresOccupiedByNextShip(int x, IEnumerable<Ship> shipsContainingPoint)
+        public bool AreWellSpaced()
         {
-            var nextShip = shipsContainingPoint.First();
-            var nOccupied = nextShip.BoundingBox.FigureEndPosition().X - x;
-            return nOccupied;
+            var result = false;
+            if(ships!=null && ships.Any())
+            {
+                var rules = new List<IRule>();
+                rules.Add(new RectangleContainsRule(board.Bounds, ships.First().BoundingBox, null));
+                
+                
+
+                result = rules.Where(r=>!r.Eval().IsSuccess).Count() > 0;
+            }
+            return result;
+        }
+
+        public override IRuleResult Eval()
+        {
+            //todo eval rule
+
+            return ruleResult;
         }
     }
 }
