@@ -21,10 +21,26 @@ namespace BattelshipKata.Domain.Rules.BoardRules
         public List<IRule> CompareShips()
         {
             var rules = new List<IRule>();
-            var alreadyPlaceShips = ships.Take(1);
+            var alreadyPlacedShips = ships.Take(1).ToList();
             foreach (var ship in ships.Skip(1))
             {
                 //scale 1
+                var inBoardRule = new RectangleContainsRule(board.Bounds, ship.BoundingBox, null);
+                if(inBoardRule.Eval().IsSuccess)
+                {
+                    var currShipRect = ship.BoundingBox.ScaleOne(board.Bounds.Position, new Position{ X = board.Bounds.MaxX, Y = board.Bounds.MaxY });
+                    //Todo it must not intersecte any placed ship
+
+                    //ship intersects las one
+                    var shipIntersectsOthers = new RectangleContainsRule(currShipRect, alreadyPlacedShips.Last().BoundingBox, null); 
+                    rules.Add(shipIntersectsOthers);
+                }
+                else
+                {
+                    //Add shipo failed to be in board
+                    rules.Add(inBoardRule);
+                }
+                alreadyPlacedShips.Add(ship);
             }
             return rules;
         }
