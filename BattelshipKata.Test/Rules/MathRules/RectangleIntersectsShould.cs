@@ -156,15 +156,63 @@ namespace BattelshipKata.Test.Rules.ShotRules
             Assert.Equal(expected, result);
         }
         [Fact]
-        public void Succed_rects_no_overlap_vertically()
+        public void Succed_when_rects_last_position()
         {
             //Given
-            var expected = false;
+            var expected = true;
             var rectOne =  new Rectangle()
             {
-                Width = 2,
+                Width = 1,
+                Height = 3,
+                Position = new Position { X = 2, Y = 0 }
+            };
+            var rectTwo = new Rectangle()
+            {
+                Width = 3,
                 Height = 1,
-                Position = Position.Zero
+                Position = new Position { X = 0, Y = 2 }
+            };
+            var rule = fixture.RuleFactory(rectOne, rectTwo);
+            
+            //When
+            var result = rule.Eval().IsSuccess;
+            //Then
+            Assert.Equal(expected, result);
+        }
+        [Fact]
+        public void Succed_when_first_criss_cross_second()
+        {
+            //Given
+            var expected = true;
+            var rectOne = new Rectangle()
+            {
+                Width = 3,
+                Height = 1,
+                Position = new Position { X = 0, Y = 1 }
+            };
+            var rectTwo = new Rectangle()
+            {
+                Width = 1,
+                Height = 3,
+                Position = new Position { X = 1, Y = 0 }
+            };
+            var rule = fixture.RuleFactory(rectOne, rectTwo);
+            
+            //When
+            var result = rule.Eval().IsSuccess;
+            //Then
+            Assert.Equal(expected, result);
+        }
+        [Fact]
+        public void Succed_when_second_criss_cross_first()
+        {
+            //Given
+            var expected = true;
+            var rectOne =  new Rectangle()
+            {
+                Width = 1,
+                Height = 3,
+                Position = new Position { X = 1, Y = 0 }
             };
             var rectTwo = new Rectangle()
             {

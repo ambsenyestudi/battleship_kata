@@ -27,6 +27,16 @@ namespace BattelshipKata.Domain.Rules.MathRules
             {
                 isIntersect = true;
             }
+            else
+            {
+                var isFirst = bigRect.Position.X <= smallRect.Position.X && bigRect.MaxX >= smallRect.Position.X && 
+                    smallRect.Position.Y <= bigRect.Position.Y && smallRect.MaxY >= bigRect.Position.Y;
+
+                var isSecond = bigRect.Position.Y <= smallRect.Position.Y && bigRect.MaxY >= smallRect.Position.Y &&
+                    smallRect.Position.X <= bigRect.Position.X && smallRect.MaxX >= bigRect.Position.X;
+
+                isIntersect = isFirst || isSecond;
+            }
             ruleResult.IsSuccess = isIntersect;
             return ruleResult;
         }
