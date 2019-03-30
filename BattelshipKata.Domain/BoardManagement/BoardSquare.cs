@@ -48,9 +48,5 @@ namespace BattelshipKata.Domain.BoardManagement
         {
             GameState = SquareGameState.Covered;
         }
-        public IMatchRule MissedShotRuleFactory()
-        {
-            return new MissedShotMatchRule(this);
-        }
     }
 }

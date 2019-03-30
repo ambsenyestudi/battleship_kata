@@ -29,6 +29,7 @@ namespace BattelshipKata.Domain.BoardManagement
                     ()=>boardUpdateService.UpdateMissShot(board,shotPosition)
                 )
             );
+            //refactor the following two in a batch rule with two action autcomes
             evaluator.OtherwiseEval(
                 new ShotHitRule(board, shotPosition, 
                     ()=>boardUpdateService.UpdateFleetAndBoardHits(board,shotPosition)
