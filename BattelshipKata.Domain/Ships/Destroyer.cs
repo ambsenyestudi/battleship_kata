@@ -13,7 +13,7 @@ namespace BattelshipKata.Domain.Ships
         public static Rectangle DestroyerBoundingBoxFactory()
         {
             var boundingBox = Rectangle.One;
-            boundingBox.Width = 3;
+            boundingBox.Width = 2;
             return boundingBox;
         }
     }

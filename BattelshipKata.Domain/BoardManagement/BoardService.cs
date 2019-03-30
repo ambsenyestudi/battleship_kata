@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BattelshipKata.Domain.Rules;
@@ -8,9 +9,9 @@ namespace BattelshipKata.Domain.BoardManagement
 {
     public class BoardService
     {
-        public IRule SpaceShipRuleFactory(Board board, IEnumerable<Ship> ships)
+        public IRule SpaceShipRuleFactory(Board board, IEnumerable<Ship> ships, int widthOffset, int heightOffset, Action action)
         {
-            return new SpacedShipsRule(board, ships, null);
+            return new SpacedShipsRule(board, ships, widthOffset, heightOffset, action);
         }
         public bool IsInBoard(IEnumerable<IRule> rules)
         {

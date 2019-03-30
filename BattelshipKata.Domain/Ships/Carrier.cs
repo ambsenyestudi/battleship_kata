@@ -1,8 +1,8 @@
 namespace BattelshipKata.Domain.Ships
 {
-    public class Cruiser:Ship
+    public class Carrier:Ship
     {
-        public Cruiser():base(ShipType.Cruiser)
+        public Carrier():base(ShipType.Carrier)
         {
             InitBoundingBox();
         }
@@ -13,7 +13,7 @@ namespace BattelshipKata.Domain.Ships
         public static Rectangle CruiserBoundingBoxFactory()
         {
             var boundingBox = Rectangle.One;
-            boundingBox.Width = 4;
+            boundingBox.Width = 5;
             return boundingBox;
         }
     }

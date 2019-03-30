@@ -19,7 +19,7 @@ namespace BattelshipKata.Domain.BoardManagement
         }
 
         public int BattleShipCount { get => Fleet.Where(sh => sh.ShipType == ShipType.Battelship).Count(); }
-        public int CruiserCount { get => Fleet.Where(sh => sh.ShipType == ShipType.Cruiser).Count(); }
+        public int CruiserCount { get => Fleet.Where(sh => sh.ShipType == ShipType.Carrier).Count(); }
         public int DestroyerCount { get => Fleet.Where(sh => sh.ShipType == ShipType.Destroyer).Count(); }
         public int SubmarineCount { get => Fleet.Where(sh => sh.ShipType == ShipType.Submarine).Count(); }
 
@@ -70,7 +70,7 @@ namespace BattelshipKata.Domain.BoardManagement
                 }
                 else if (i < shipCount / 3)
                 {
-                    ships.Add(new Ship(ShipType.Cruiser));
+                    ships.Add(new Ship(ShipType.Carrier));
 
                 }
                 else if (i > shipCount / 2)

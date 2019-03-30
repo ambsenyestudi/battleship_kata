@@ -4,6 +4,7 @@ using System.Linq;
 using BattelshipKata.Domain.BoardManagement;
 using BattelshipKata.Domain.Extensions;
 using BattelshipKata.Domain.Rules.Base;
+using BattelshipKata.Domain.Rules.ShipRules;
 using BattelshipKata.Domain.Ships;
 
 namespace BattelshipKata.Domain.Rules.BoardRules
@@ -12,58 +13,49 @@ namespace BattelshipKata.Domain.Rules.BoardRules
     {
         private readonly Board board;
         private readonly IEnumerable<Ship> ships;
+        private readonly Position offset;
 
-        public SpacedShipsRule(Board board, IEnumerable<Ship> ships, Action actionToBeExecuted) : base(actionToBeExecuted)
+        public SpacedShipsRule(Board board, IEnumerable<Ship> ships, int widthOffset, int heightOffset, Action actionToBeExecuted) : base(actionToBeExecuted)
         {
             this.board = board;
             this.ships = ships;
+            this.offset = new Position { X = widthOffset, Y = heightOffset };
         }
-        public List<IRule> CompareShips()
+        public bool CompareShips()
         {
-            var rules = new List<IRule>();
-            var alreadyPlacedShips = ships.Take(1).ToList();
-            foreach (var ship in ships.Skip(1))
+            var allShipsInBoard = AreAllShipsInBoard();
+            if (allShipsInBoard)
             {
-                //scale 1
-                var inBoardRule = new RectangleContainsRule(board.Bounds, ship.BoundingBox, null);
-                if(inBoardRule.Eval().IsSuccess)
-                {
-                    var currShipRect = ship.BoundingBox.ScaleOne(board.Bounds.Position, new Position{ X = board.Bounds.MaxX, Y = board.Bounds.MaxY });
-                    //Todo it must not intersecte any placed ship
-
-                    //ship intersects las one
-                    var shipIntersectsOthers = new RectangleContainsRule(currShipRect, alreadyPlacedShips.Last().BoundingBox, null); 
-                    rules.Add(shipIntersectsOthers);
-                }
-                else
-                {
-                    //Add shipo failed to be in board
-                    rules.Add(inBoardRule);
-                }
-                alreadyPlacedShips.Add(ship);
+                var shipsOverlapingRule = new ShipsOverlapingBatchRule(ships.ToList(), offset);
+                return shipsOverlapingRule.Eval().IsSuccess;
             }
-            return rules;
+            return allShipsInBoard;
         }
 
-        public bool AreWellSpaced()
+        private bool AreAllShipsInBoard()
         {
-            var result = false;
-            if(ships!=null && ships.Any())
-            {
-                var rules = new List<IRule>();
-                rules.Add(new RectangleContainsRule(board.Bounds, ships.First().BoundingBox, null));
-                
-                
-
-                result = rules.Where(r=>!r.Eval().IsSuccess).Count() > 0;
-            }
-            return result;
+            return !AnyShipOutOfBoardBounds();
         }
+
+        private bool AnyShipOutOfBoardBounds()
+        {
+            var rules = BuildBoardContiansRuleBatch(board, ships);
+            var nonPassingBoardRules = rules.Where(ru => !ru.Eval().IsSuccess);
+            return nonPassingBoardRules.Any();
+        }
+
+        private IEnumerable<BaseRule> BuildBoardContiansRuleBatch(Board board, IEnumerable<Ship> ships)
+        {
+            return ships.Select(sh => BuildBoardContiansRule(board, sh));
+        }
+
+        private RectangleContainsRule BuildBoardContiansRule(Board board, Ship ships, Action action = null) =>
+            new RectangleContainsRule(board.Bounds, ships.BoundingBox, action);
 
         public override IRuleResult Eval()
         {
-            //todo eval rule
 
+            ruleResult.IsSuccess = CompareShips();
             return ruleResult;
         }
     }

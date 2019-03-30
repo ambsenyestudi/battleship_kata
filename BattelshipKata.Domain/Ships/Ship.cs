@@ -6,7 +6,7 @@ using BattelshipKata.Domain.Rules.ShipRules;
 
 namespace BattelshipKata.Domain.Ships
 {
-    public enum ShipType { None, Submarine, Destroyer, Cruiser, Battelship }
+    public enum ShipType { None,  Destroyer, Submarine, Battelship, Carrier }
     public enum ShipOrientation { Horizontal, Vertical }
     public class Ship
     {
@@ -103,8 +103,8 @@ namespace BattelshipKata.Domain.Ships
                 case ShipType.Battelship:
                     this.BoundingBox = Battleship.BattleshipBoundingBoxFactory();
                     break;
-                case ShipType.Cruiser:
-                    this.BoundingBox = Cruiser.CruiserBoundingBoxFactory();
+                case ShipType.Carrier:
+                    this.BoundingBox = Carrier.CruiserBoundingBoxFactory();
                     break;
                 case ShipType.Destroyer:
                     this.BoundingBox = Destroyer.DestroyerBoundingBoxFactory();

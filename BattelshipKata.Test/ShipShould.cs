@@ -15,31 +15,31 @@ namespace BattelshipKata.Test
             Assert.True(ship.Size > 0);
         }
         [Fact]
-        public void Size_two_when_subarine()
+        public void Size_3_when_subarine()
         {
             var ship = new Submarine();
-            var expected = 2;
-            Assert.Equal(expected, ship.Size);
-        }
-        [Fact]
-        public void Size_three_when_destroyer()
-        {
-            var ship = new Destroyer();
             var expected = 3;
             Assert.Equal(expected, ship.Size);
         }
-        [Fact]  
-        public void Size_four_when_cruser()
+        [Fact]
+        public void Size_2_when_destroyer()
         {
-            var ship = new Cruiser();
-            var expected = 4;
+            var ship = new Destroyer();
+            var expected = 2;
+            Assert.Equal(expected, ship.Size);
+        }
+        [Fact]  
+        public void Size_5_when_carrier()
+        {
+            var ship = new Carrier();
+            var expected = 5;
             Assert.Equal(expected, ship.Size);
         }
         [Fact]
-        public void Size_five_when_battleship()
+        public void Size_4_when_battleship()
         {
             var ship = new Battleship();
-            var expected = 5;
+            var expected = 4;
             Assert.Equal(expected, ship.Size);
         }
     }
